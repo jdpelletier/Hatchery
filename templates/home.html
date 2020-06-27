@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	        <link
+                    href="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.css"
+                    rel="stylesheet" type="text/css">
+                <link
+                    href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.css"
+                    rel="stylesheet" type="text/css">
+
+                <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.js"></script>
+                <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.js"></script>
+		<title>Hatchery</title>
+	</head>
+	<body>
+		<h1>Hatchery Measurements</h1>
+                <h2>{{ datadic.day }}</h2>
+                <h3>Measurements at {{ datadic.time }}</h3>
+                <ul>
+			<li>{{ datadic.temp1 }}</li>
+			<li>{{ datadic.temp2 }}</li>
+			<li>{{ datadic.temp3 }}</li>
+			<li>{{ datadic.ph }}</li>
+		</ul>
+		<h3>Plots for today:</h3>
+		 {{ script|safe }}
+                 {{ div|safe }}
+	</body>
+</html>
