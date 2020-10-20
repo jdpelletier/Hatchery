@@ -2,11 +2,14 @@
 #include <DallasTemperature.h>
 #include "ph_grav.h"                           
 // PH setup
-Gravity_pH pH = Gravity_pH(A1);
+Gravity_pH pH = Gravity_pH(A2);
 
 // Temperature setup
 // Data wire is plugged into digital pin 2 on the Arduino
 #define ONE_WIRE_BUS 2
+
+// pump setup
+int motorPin = A0; // pin that turns on the motor
 
 // Setup a oneWire instance to communicate with any OneWire device
 OneWire oneWire(ONE_WIRE_BUS);  
@@ -21,13 +24,23 @@ float tempC;
 void setup() {
   sensors.begin();  // Start up the library 
   deviceCount = sensors.getDeviceCount();
-//  pinMode(13,OUTPUT); for writing to a pin, not currently doing
+  pinMode(motorPin, OUTPUT); // set A0 to an output so we can use it to turn on the transistor
   Serial.begin(9600);
 }
 
 void loop() {
   // Wait a second between measurements.
   delay(1000);
+  // check for pump change
+  if (Serial.available()) {
+        char serialListener = Serial.read();
+        if (serialListener == 'H') {
+            digitalWrite(motorPin, HIGH);
+        }
+        else if (serialListener == 'L') {
+            digitalWrite(motorPin, LOW);
+        }
+    }
   //Temp acquisition
   sensors.requestTemperatures(); 
 

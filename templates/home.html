@@ -13,15 +13,23 @@
 		<title>Hatchery</title>
 	</head>
 	<body>
+		<form action="." method="post">
 		<h1>Hatchery Measurements</h1>
                 <h2>{{ datadic.day }}</h2>
                 <h3>Measurements at {{ datadic.time }}</h3>
                 <ul>
-			<li>{{ datadic.temp1 }}</li>
-			<li>{{ datadic.temp2 }}</li>
-			<li>{{ datadic.temp3 }}</li>
-			<li>{{ datadic.ph }}</li>
+			<li>Tank 1 Temp: {{ datadic.temp1 }}</li>
+			<li>Tank 2 Temp: {{ datadic.temp2 }}</li>
+			<li>Tank 1 pH: {{ datadic.ph }}</li>
 		</ul>
+		<input type="submit" name="pumpon" id="pumpon" value="Pump On">
+		<input type="submit" name="pumpoff" id="pumpoff" value="Pump Off">
+		{% if pumprunning %}
+		<h2>--Pump is running--</h2>
+		{% else %}
+		<h2>--Pump is off--</h2>
+		{% endif %}
+
 		<h3>Plots for today:</h3>
 		 {{ script|safe }}
                  {{ div|safe }}

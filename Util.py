@@ -37,7 +37,7 @@ def serRead():
     values = []
     t1 = []
     t2 = []
-    t3 = []
+    # t3 = []
     p = []
     for i in range(10):
         b = ser.readline()         # read a byte string
@@ -48,19 +48,54 @@ def serRead():
             continue
         string = string_n.rstrip() # remove \n and \r
         values = string.split()
-        if len(values) != 4:
+        if len(values) != 3:
             print("Read Error")
             continue
         x = float(values[0])
         t1.append(x)
         t2.append(float(values[1]))
-        t3.append(float(values[2]))
-        p.append(float(values[3]))
+        # t3.append(float(values[2]))
+        p.append(float(values[2]))
         time.sleep(1)
         i += 1
     t1_av = statistics.mean(t1)
     t2_av = statistics.mean(t2)
-    t3_av = statistics.mean(t3)
+    # t3_av = statistics.mean(t3)
     ph_av = statistics.mean(p)
     ser.close()
-    return t1_av, t2_av, t3_av, ph_av
+    # return t1_av, t2_av, t3_av, ph_av
+    return t1_av, t2_av, ph_av
+
+
+def pump_on():
+    try:
+        arduino = serial.Serial('/dev/ttyACM1', 9600)
+        time.sleep(2)
+        arduino.write(b'H')
+        time.sleep(1)
+        arduino.close()
+        pump_on.has_been_called = True
+        return True
+    except serial.serialutil.SerialException:
+        return False
+
+def pump_off():
+    try:
+        arduino = serial.Serial('/dev/ttyACM1', 9600)
+        time.sleep(2)
+        arduino.write(b'L')
+        time.sleep(1)
+        arduino.close()
+        pump_on.has_been_called = False
+        return False
+    except serial.serialutil.SerialException:
+        return True
+
+def pump_check():
+    try:
+        if pump_on.has_been_called:
+            return True
+        else:
+            return False
+    except AttributeError: #catch on boot up, assume pump off
+        return False
