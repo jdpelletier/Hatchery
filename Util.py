@@ -31,7 +31,7 @@ def FolderCreate(today):
     return path
 
 def serRead():
-    ser = serial.Serial('/dev/ttyACM1', 9600)
+    ser = serial.Serial('/dev/ttyACM0', 9600)
     time.sleep(2)
     i = 0
     values = []
@@ -69,7 +69,7 @@ def serRead():
 
 def pump_on():
     try:
-        arduino = serial.Serial('/dev/ttyACM1', 9600)
+        arduino = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)
         arduino.write(b'H')
         time.sleep(1)
@@ -81,7 +81,7 @@ def pump_on():
 
 def pump_off():
     try:
-        arduino = serial.Serial('/dev/ttyACM1', 9600)
+        arduino = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)
         arduino.write(b'L')
         time.sleep(1)

@@ -1,7 +1,7 @@
 import serial # you need to install the pySerial :pyserial.sourceforge.net
 import time
 # your Serial port should be different!
-arduino = serial.Serial('/dev/ttyACM1', 9600)
+arduino = serial.Serial('/dev/ttyACM0', 9600)
 
 def onOffFunction():
     command = input("Type something..: (on/ off / bye )")

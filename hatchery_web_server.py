@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/',methods=['POST', 'GET'])
 def home_():
-    parent_directory = "C:/Users/johnp/Desktop/Kohanakai/Hatchery/TestData"
+    parent_directory = "/home/pi/Desktop/Hatchery/TestData"
     ## for testing button, erase later
     today = datetime.date.today()
     # yesterday = today - datetime.timedelta(days=9)
