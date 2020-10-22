@@ -51,9 +51,9 @@ def serRead():
         if len(values) != 3:
             print("Read Error")
             continue
-        if values[0] > 10:
+        if float(values[0]) > 10:
             t1.append(float(values[0]))
-        if values[1] > 10:
+        if float(values[1]) > 10:
             t2.append(float(values[1]))
         # t3.append(float(values[2]))
         p.append(float(values[2]))
