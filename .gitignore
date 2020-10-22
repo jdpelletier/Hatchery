@@ -1,2 +1,10 @@
 
 *.txt
+*.db
+*.ini
+migrations/__pycache__/env.cpython-37.pyc
+migrations/env.py
+migrations/script.py.mako
+migrations/README
+migrations/versions/__pycache__/ab2e40ee2814_users_table.cpython-37.pyc
+migrations/versions/ab2e40ee2814_users_table.py
