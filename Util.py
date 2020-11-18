@@ -48,7 +48,7 @@ def serRead():
             continue
         string = string_n.rstrip() # remove \n and \r
         values = string.split()
-        if len(values) != 3:
+        if len(values) != 4:
             print("Read Error")
             continue
         if float(values[0]) > 10:
