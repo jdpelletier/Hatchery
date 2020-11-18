@@ -37,7 +37,7 @@ def serRead():
     values = []
     t1 = []
     t2 = []
-    # t3 = []
+    t3 = []
     p = []
     for i in range(10):
         b = ser.readline()         # read a byte string
@@ -55,17 +55,17 @@ def serRead():
             t1.append(float(values[0]))
         if float(values[1]) > 10:
             t2.append(float(values[1]))
-        # t3.append(float(values[2]))
-        p.append(float(values[2]))
+        if float(values[2]) > 10:
+            t3.append(float(values[2]))
+        p.append(float(values[3]))
         time.sleep(1)
         i += 1
     t1_av = statistics.mean(t1)
     t2_av = statistics.mean(t2)
-    # t3_av = statistics.mean(t3)
+    t3_av = statistics.mean(t3)
     ph_av = statistics.mean(p)
     ser.close()
-    # return t1_av, t2_av, t3_av, ph_av
-    return t1_av, t2_av, ph_av
+    return t1_av, t2_av, t3_av, ph_av
 
 
 def pump_on():
