@@ -27,7 +27,7 @@ def home(path):
             temp1.append(float(data[1]))
             temp2.append(float(data[2]))
             temp3.append(float(data[3]))
-            ph.append(float(data[3]))
+            ph.append(float(data[4]))
     t1_max = max(temp1)
     t2_max = max(temp2)
     t3_max = max(temp3)
