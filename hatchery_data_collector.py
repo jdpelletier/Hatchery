@@ -12,7 +12,7 @@ def hatchery_data_collector():
             currentDay = datetime.date.today()
             path = Util.FolderCreate(currentDay)
         #Taking average of 10 measurements
-        t1, t2, p = Util.serRead()
+        t1, t2, t3, p = Util.serRead()
         string = f"{t1} {t2} {t3} {p}"
         Util.FileWrite(path, string)
         time.sleep(288)            # wait 5 minutes

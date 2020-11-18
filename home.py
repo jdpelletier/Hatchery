@@ -19,7 +19,8 @@ def home(path):
     with open(path, 'r') as f:
         for line in f:
             data = line.split()
-            time = datetime.strptime(data[0], '%H:%M:%S')
+            time = data[0].strip().strip('*\x00')
+            time = datetime.strptime(time, '%H:%M:%S')
             today = date.today()
             time = time.replace(year=today.year, month=today.month, day=today.day)
             time_arr.append(time)
