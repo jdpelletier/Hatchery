@@ -41,7 +41,7 @@ def home(path):
         "temp1" : float(data[1]),
         "temp2" : float(data[2]),
         "temp3" : float(data[3]),
-        "ph" : float(data[3])
+        "ph" : float(data[4])
         }
 
     t1_plot = figure(title="Temp 1", x_axis_label='Time', y_axis_label='Temp F',
