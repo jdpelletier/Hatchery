@@ -15,9 +15,11 @@ def hatchery_data_collector():
         t1, t2, t3, p = Util.serRead()
         if t2 or t3 >= 85.0: #TODO get temp value from nick
             Util.pump_on()
-            time.sleep(60)    #TODO get time from nick
+            while t2 or t3 > 80.0:
+                t1, t2, t3 = Util.serRead()
+            # time.sleep(60)    #TODO get time from nick
             Util.pump_off()
-            t1, t2, t3, p = Util.serRead()
+            # t1, t2, t3, p = Util.serRead()
         string = f"{t1} {t2} {t3} {p}"
         Util.FileWrite(path, string)
         time.sleep(288)            # wait 5 minutes
