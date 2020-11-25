@@ -16,7 +16,7 @@ def hatchery_data_collector():
         if t2 or t3 >= 85.0: #TODO get temp value from nick
             Util.pump_on()
             while t2 or t3 > 80.0:
-                t1, t2, t3 = Util.serRead()
+                t1, t2, t3, p = Util.serRead()
             # time.sleep(60)    #TODO get time from nick
             Util.pump_off()
             # t1, t2, t3, p = Util.serRead()
