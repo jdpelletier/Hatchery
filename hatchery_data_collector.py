@@ -12,11 +12,12 @@ def hatchery_data_collector():
             currentDay = datetime.date.today()
             path = Util.FolderCreate(currentDay)
         #Taking average of 10 measurements
-        pumprunning = Util.pump_check()
+        # pumprunning = Util.pump_check()
         t1, t2, t3, p = Util.serRead()
-        if pumprunning == True: #if pump was on before read, cycle it back on after
-            pumprunning = Util.pump_off()
-            pumprunning = Util.pump_on()
+        #TODO figure out pump check
+        # if pumprunning == True: #if pump was on before read, cycle it back on after
+        #     pumprunning = Util.pump_off()
+        #     pumprunning = Util.pump_on()
         string = f"{t1} {t2} {t3} {p}"
         Util.FileWrite(path, string)
         time.sleep(288)            # wait 5 minutes
