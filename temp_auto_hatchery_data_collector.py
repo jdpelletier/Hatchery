@@ -21,8 +21,9 @@ def hatchery_data_collector():
         # if pumprunning == True: #if pump was on before read, cycle it back on after
         #     pumprunning = Util.pump_off()
         #     pumprunning = Util.pump_on()
-        if t2 or t3 > 78:
-            while t2 or t3 > 75:
+        if t2 >78.0 or t3 > 78:
+            while t2 > 75.0 or t3 > 75.0:
+                print(f"t2: {t2} t3: {t3}")
                 Util.pump_on()
                 time.sleep(288)
                 Util.pump_off()
