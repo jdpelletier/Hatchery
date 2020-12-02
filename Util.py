@@ -96,7 +96,7 @@ def pump_check():
     try:
         with open('pumpcheck.txt', 'r') as f:
             onoff = f.readline()
-        if onoff = 'on':
+        if onoff == 'on':
             return True
         else:
             return False
@@ -112,7 +112,7 @@ def auto_check():
     try:
         with open('autocheck.txt', 'r') as f:
             onoff = f.readline()
-        if onoff = 'on':
+        if onoff == 'on':
             return True
         else:
             return False
