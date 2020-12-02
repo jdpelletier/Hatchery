@@ -7,7 +7,7 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.embed import components
 
-from Util import pump_on, pump_off, pump_check
+from Util import pump_on, pump_off, pump_check, auto_file_write, auto_check
 
 def home(path):
     # prepare some data
@@ -88,5 +88,18 @@ def home(path):
         if pumprunning == True:
             pumprunning = pump_off()
 
+    autorunning = auto_check()
+    autoon = request.form.get("autoon")
+    if autoon:
+        if autorunning == False:
+            autorunning = auto_file_write('on')
 
-    return render_template("home.html", datadic=datadic, script=script, div=div, pumpon=pumpon, pumpoff=pumpoff, pumprunning=pumprunning)
+    autooff = request.form.get("autooff")
+    if autooff:
+        if autorunning == True:
+            autorunning = auto_file_write('off')
+
+
+    return render_template("home.html", datadic=datadic, script=script, div=div,
+                            pumpon=pumpon, pumpoff=pumpoff, pumprunning=pumprunning,
+                            autoon=autoon, autooff=autooff, autorunning=autorunning)

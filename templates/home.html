@@ -25,10 +25,17 @@
 		</ul>
 		<input type="submit" name="pumpon" id="pumpon" value="Pump On">
 		<input type="submit" name="pumpoff" id="pumpoff" value="Pump Off">
+		<input type="submit" name="autoon" id="autoon" value="Auto On">
+		<input type="submit" name="autooff" id="autooff" value="Auto Off">
 		{% if pumprunning %}
 		<h2>--Pump is running--</h2>
 		{% else %}
 		<h2>--Pump is off--</h2>
+		{% endif %}
+		{% if autorunning %}
+		<h2>--Automated temperature adjustment is running--</h2>
+		{% else %}
+		<h2>--Automated temperature adjustment is off--</h2>
 		{% endif %}
 
 		<h3>Plots for today:</h3>

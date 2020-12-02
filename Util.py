@@ -75,7 +75,7 @@ def pump_on():
         arduino.write(b'H')
         time.sleep(1)
         arduino.close()
-        pump_on.has_been_called = True
+        pump_file_write('on')
         return True
     except serial.serialutil.SerialException:
         return False
@@ -87,16 +87,39 @@ def pump_off():
         arduino.write(b'L')
         time.sleep(1)
         arduino.close()
-        pump_on.has_been_called = False
+        pump_file_write('off')
         return False
     except serial.serialutil.SerialException:
         return True
 
 def pump_check():
     try:
-        if pump_on.has_been_called:
+        with open('pumpcheck.txt', 'r') as f:
+            onoff = f.readline()
+        if onoff = 'on':
             return True
         else:
             return False
-    except AttributeError: #catch on boot up, assume pump off
+    except FileNotFoundError: #catch on boot up, assume pump off
         return False
+
+def pump_file_write(onoff):
+    with open('pumpcheck.txt', 'w+') as f:
+        f.write(onoff)
+        f.close()
+
+def auto_check():
+    try:
+        with open('autocheck.txt', 'r') as f:
+            onoff = f.readline()
+        if onoff = 'on':
+            return True
+        else:
+            return False
+    except FileNotFoundError: #catch on boot up, assume pump off
+        return False
+
+def auto_file_write(onoff):
+    with open('autocheck.txt', 'w+') as f:
+        f.write(onoff)
+        f.close()
