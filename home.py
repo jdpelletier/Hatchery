@@ -77,16 +77,27 @@ def home(path):
     script, div = components(p)
 
     ##Button stuff##
-    pumprunning = pump_check()
-    pumpon = request.form.get("pumpon")
-    if pumpon:
-        if pumprunning == False:
-            pumprunning = pump_on()
+    pump1running = pump_check(1)
+    pump2running = pump_check(2)
+    pump1on = request.form.get("pump1on")
+    if pump1on:
+        if pump1running == False:
+            pump1running = pump_on(1)
 
-    pumpoff = request.form.get("pumpoff")
-    if pumpoff:
-        if pumprunning == True:
-            pumprunning = pump_off()
+    pump2on = request.form.get("pump2on")
+    if pump2on:
+        if pump2running == False:
+            pump2running = pump_on(2)
+
+    pump1off = request.form.get("pump1off")
+    if pump1off:
+        if pump1running == True:
+            pump1running = pump_off(1)
+
+    pump2off = request.form.get("pump2off")
+    if pump2off:
+        if pump2running == True:
+            pump2running = pump_off(2)
 
     autorunning = auto_check()
     autoon = request.form.get("autoon")
@@ -101,5 +112,6 @@ def home(path):
 
 
     return render_template("home.html", datadic=datadic, script=script, div=div,
-                            pumpon=pumpon, pumpoff=pumpoff, pumprunning=pumprunning,
-                            autoon=autoon, autooff=autooff, autorunning=autorunning)
+                            pump1on=pump1on, pump1off=pump1off, pump2on=pump2on,
+                            pump2off=pump2off, pumprunning=pumprunning, autoon=autoon,
+                            autooff=autooff, autorunning=autorunning)

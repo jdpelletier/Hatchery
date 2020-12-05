@@ -13,13 +13,17 @@ def hatchery_data_collector():
             currentDay = datetime.date.today()
             path = Util.FolderCreate(currentDay)
         #Taking average of 10 measurements
-        pumprunning = Util.pump_check()
+        pumprunning1 = Util.pump_check(1)
+        pumprunning2 = Util.pump_check(2)
         t1, t2, t3, p = Util.serRead()
         string = f"{t1} {t2} {t3} {p}"
         Util.FileWrite(path, string)
-        if pumprunning == True: #if pump was on before read, cycle it back on after
-            pumprunning = Util.pump_off()
-            pumprunning = Util.pump_on()
+        if pumprunning1 == True: #if pump was on before read, cycle it back on after
+            pumprunning1 = Util.pump_off(1)
+            pumprunning1 = Util.pump_on(1)
+        elif pumprunning2 == True: #if pump was on before read, cycle it back on after
+            pumprunning2 = Util.pump_off(2)
+            pumprunning2 = Util.pump_on(2)
         # if (t2 > 85.0 or t3 > 85.0) and (Util.auto_check()): TODO put back in when pipe better
         if (t2 > 85.0) and (Util.auto_check()):
             # while t2 > 80.0 or t3 > 80.0:

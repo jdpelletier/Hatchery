@@ -68,33 +68,43 @@ def serRead():
     return t1_av, t2_av, t3_av, ph_av
 
 
-def pump_on():
+def pump_on(valve):
     try:
         arduino = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)
-        arduino.write(b'H')
+        if valve == 1:
+            arduino.write(b'H1')
+        elif valve == 2:
+            arduino.write(b'H2')
         time.sleep(1)
         arduino.close()
-        pump_file_write('on')
+        pump_file_write(valve, 'on')
         return True
     except serial.serialutil.SerialException:
         return False
 
-def pump_off():
+def pump_off(valve):
     try:
         arduino = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)
-        arduino.write(b'L')
+        if valve == 1:
+            arduino.write(b'L1')
+        elfi valve == 2:
+            arduino.write(b'L2')
         time.sleep(1)
         arduino.close()
-        pump_file_write('off')
+        pump_file_write(valve, 'off')
         return False
     except serial.serialutil.SerialException:
         return True
 
-def pump_check():
+def pump_check(valve):
+    if valve == 1:
+        pfile = 'pumpcheck1.txt'
+    else:
+        pfile = 'pumpcheck2.txt'
     try:
-        with open('pumpcheck.txt', 'r') as f:
+        with open(pfile, 'r') as f:
             onoff = f.readline()
         if onoff == 'on':
             return True
@@ -103,8 +113,12 @@ def pump_check():
     except FileNotFoundError: #catch on boot up, assume pump off
         return False
 
-def pump_file_write(onoff):
-    with open('pumpcheck.txt', 'w+') as f:
+def pump_file_write(valve, onoff):
+    if valve == 1:
+        pfile = 'pumpcheck1.txt'
+    else:
+        pfile = 'pumpcheck2.txt'
+    with open(pfile, 'w+') as f:
         f.write(onoff)
         f.close()
 

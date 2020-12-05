@@ -9,7 +9,7 @@ Gravity_pH pH = Gravity_pH(A2);
 #define ONE_WIRE_BUS 2
 
 // pump setup
-int motorPin = A0; // pin that turns on the motor
+int motorPin = A3; // pin that turns on the motor
 
 // Setup a oneWire instance to communicate with any OneWire device
 OneWire oneWire(ONE_WIRE_BUS);  
