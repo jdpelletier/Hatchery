@@ -24,13 +24,22 @@ def hatchery_data_collector():
         elif pumprunning2 == True: #if pump was on before read, cycle it back on after
             pumprunning2 = Util.pump_off(2)
             pumprunning2 = Util.pump_on(2)
-        # if (t2 > 85.0 or t3 > 85.0) and (Util.auto_check()): TODO put back in when pipe better
-        if (t2 > 85.0) and (Util.auto_check()):
-            # while t2 > 80.0 or t3 > 80.0:
-            while t2 > 80.0: #TODO put back in when pipe better
-                Util.pump_on()
-                time.sleep(288)
-                Util.pump_off()
+        if (t2 > 85.0 or t3 > 85.0) and (Util.auto_check()):
+            while t2 > 80.0 or t3 > 80.0:
+                if t2 > 80.0 and t3 > 80.0
+                    Util.pump_on(1)
+                    Util.pump_on(2)
+                    time.sleep(288)
+                    Util.pump_off(1)
+                    Util.pump_off(2)
+                elif t2 > 80.0 and t3 < 80.0:
+                    Util.pump_on(1)
+                    time.sleep(288)
+                    Util.pump_off(1)
+                elif t2 < 80.0 and t3 > 80.0:
+                    Util.pump_on(2)
+                    time.sleep(288)
+                    Util.pump_off(2)
                 t1, t2, t3, p = Util.serRead()
                 string = f"{t1} {t2} {t3} {p}"
                 Util.FileWrite(path, string)
