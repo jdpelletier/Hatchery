@@ -105,7 +105,7 @@ def home(path):
     if pump2off:
         if pump1running == False and pump2running == True:
             pump2running = pump_off(2)
-        elif pump1running == True pump2running == True:
+        elif pump1running == True and pump2running == True:
             pump2running = pump_off(2)
             pump1running = pump_on(1)
 
