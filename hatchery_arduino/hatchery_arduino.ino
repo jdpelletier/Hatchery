@@ -1,6 +1,6 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#include "ph_grav.h"                           
+#include "ph_grav.h"
 // PH setup
 Gravity_pH pH = Gravity_pH(A2);
 
@@ -9,10 +9,11 @@ Gravity_pH pH = Gravity_pH(A2);
 #define ONE_WIRE_BUS 2
 
 // pump setup
-int motorPin = A3; // pin that turns on the motor
+int motorPin1 = A0; // pin that turns on the motor
+int motorPin2 = A4; // pin that turns on the motor
 
 // Setup a oneWire instance to communicate with any OneWire device
-OneWire oneWire(ONE_WIRE_BUS);  
+OneWire oneWire(ONE_WIRE_BUS);
 
 // Pass oneWire reference to DallasTemperature library
 DallasTemperature sensors(&oneWire);
@@ -22,9 +23,10 @@ float tempC;
 
 
 void setup() {
-  sensors.begin();  // Start up the library 
+  sensors.begin();  // Start up the library
   deviceCount = sensors.getDeviceCount();
-  pinMode(motorPin, OUTPUT); // set A0 to an output so we can use it to turn on the transistor
+  pinMode(motorPin1, OUTPUT); // set A0 to an output so we can use it to turn on the transistor
+  pinMode(motorPin2, OUTPUT); // set A0 to an output so we can use it to turn on the transistor
   Serial.begin(9600);
 }
 
@@ -34,15 +36,21 @@ void loop() {
   // check for pump change
   if (Serial.available()) {
         char serialListener = Serial.read();
-        if (serialListener == 'H') {
-            digitalWrite(motorPin, HIGH);
+        if (serialListener == 'H1') {
+            digitalWrite(motorPin1, HIGH);
         }
-        else if (serialListener == 'L') {
-            digitalWrite(motorPin, LOW);
+        else if (serialListener == 'H2') {
+            digitalWrite(motorPin2, HIGH);
+        }
+        else if (serialListener == 'L1') {
+            digitalWrite(motorPin1, LOW);
+        }
+        else if (serialListener == 'L2') {
+            digitalWrite(motorPin2, LOW);
         }
     }
   //Temp acquisition
-  sensors.requestTemperatures(); 
+  sensors.requestTemperatures();
 
   for (int i = 0;  i < deviceCount;  i++)
   {
@@ -52,7 +60,7 @@ void loop() {
   }
   Serial.print(" ");
   Serial.println(pH.read_ph());
-//  digitalWrite(13, HIGH); for writing to a pin, not currently doing    
+//  digitalWrite(13, HIGH); for writing to a pin, not currently doing
 //  delay(800);
-//  digitalWrite(13, LOW); for writing to a pin, not currently doing 
+//  digitalWrite(13, LOW); for writing to a pin, not currently doing
 }
