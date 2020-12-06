@@ -81,23 +81,33 @@ def home(path):
     pump2running = pump_check(2)
     pump1on = request.form.get("pump1on")
     if pump1on:
-        if pump1running == False:
+        if pump1running == False and pump2running == True:
+            pump1running = pump_on(3)
+        elif pump1running == False and pump2running == False:
             pump1running = pump_on(1)
 
     pump2on = request.form.get("pump2on")
     if pump2on:
-        if pump2running == False:
+        if pump1running == True and pump2running == False:
+            pump2running = pump_on(3)
+        elif pump1running == False and pump2running == False:
             pump2running = pump_on(2)
 
     pump1off = request.form.get("pump1off")
     if pump1off:
-        if pump1running == True:
+        if pump1running == True and pump2running == False:
             pump1running = pump_off(1)
+        elif pump1running == True and pump2running == True:
+            pump1running = pump_off(1)
+            pump2running = pump_on(2)
 
     pump2off = request.form.get("pump2off")
     if pump2off:
-        if pump2running == True:
+        if pump1running == False and pump2running == True:
             pump2running = pump_off(2)
+        elif pump1running == True pump2running == True:
+            pump2running = pump_off(2)
+            pump1running = pump_on(1)
 
     autorunning = auto_check()
     autoon = request.form.get("autoon")

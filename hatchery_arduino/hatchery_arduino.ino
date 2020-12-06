@@ -43,9 +43,17 @@ void loop() {
             digitalWrite(motorPin2, HIGH);
         }
         else if (serialListener == 'J') {
-            digitalWrite(motorPin1, LOW);
+            digitalWrite(motorPin1, HIGH);
+            digitalWrite(motorPin2, HIGH);
         }
         else if (serialListener == 'K') {
+            digitalWrite(motorPin1, LOW);
+        }
+        else if (serialListener == 'L') {
+            digitalWrite(motorPin2, LOW);
+        }
+        else if (serialListener == 'M') {
+            digitalWrite(motorPin1, LOW);
             digitalWrite(motorPin2, LOW);
         }
     }

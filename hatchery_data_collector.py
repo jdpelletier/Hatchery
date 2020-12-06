@@ -15,7 +15,11 @@ def hatchery_data_collector():
         pumprunning1 = Util.pump_check(1)
         pumprunning2 = Util.pump_check(2)
         t1, t2, t3, p = Util.serRead()
-        if pumprunning1 == True: #if pump was on before read, cycle it back on after
+        if pumprunning1 == True and pumprunning2 == True:
+            pumprunning1 = Util.pump_off(3)
+            pumprunning1 = Util.pump_on(3)
+            pumprunning2 = pumprunning1
+        elif pumprunning1 == True: #if pump was on before read, cycle it back on after
             pumprunning1 = Util.pump_off(1)
             pumprunning1 = Util.pump_on(1)
         elif pumprunning2 == True: #if pump was on before read, cycle it back on after
