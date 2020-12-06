@@ -36,16 +36,16 @@ void loop() {
   // check for pump change
   if (Serial.available()) {
         char serialListener = Serial.read();
-        if (serialListener == 'H1') {
+        if (serialListener == 'H') {
             digitalWrite(motorPin1, HIGH);
         }
-        else if (serialListener == 'H2') {
+        else if (serialListener == 'I') {
             digitalWrite(motorPin2, HIGH);
         }
-        else if (serialListener == 'L1') {
+        else if (serialListener == 'J') {
             digitalWrite(motorPin1, LOW);
         }
-        else if (serialListener == 'L2') {
+        else if (serialListener == 'K') {
             digitalWrite(motorPin2, LOW);
         }
     }

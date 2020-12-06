@@ -73,9 +73,9 @@ def pump_on(valve):
         arduino = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)
         if valve == 1:
-            arduino.write(b'H1')
+            arduino.write(b'H')
         elif valve == 2:
-            arduino.write(b'H2')
+            arduino.write(b'I')
         time.sleep(1)
         arduino.close()
         pump_file_write(valve, 'on')
@@ -88,9 +88,9 @@ def pump_off(valve):
         arduino = serial.Serial('/dev/ttyACM0', 9600)
         time.sleep(2)
         if valve == 1:
-            arduino.write(b'L1')
+            arduino.write(b'J')
         elif valve == 2:
-            arduino.write(b'L2')
+            arduino.write(b'K')
         time.sleep(1)
         arduino.close()
         pump_file_write(valve, 'off')
