@@ -91,9 +91,7 @@ def home(path):
     pump2on = request.form.get("pump2on")
     if pump2on:
         pump1running = pump_check(1)
-        print(pump1running)
         pump2running = pump_check(2)
-        print(pump2running)
         if pump1running == True and pump2running == False:
             pump2running = pump_on(3)
         elif pump1running == False and pump2running == False:
