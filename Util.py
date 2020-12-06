@@ -89,7 +89,7 @@ def pump_off(valve):
         time.sleep(2)
         if valve == 1:
             arduino.write(b'L1')
-        elfi valve == 2:
+        elif valve == 2:
             arduino.write(b'L2')
         time.sleep(1)
         arduino.close()
