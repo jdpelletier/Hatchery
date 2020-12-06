@@ -8,7 +8,8 @@ def hatchery_data_collector():
     currentDay = datetime.date.today()
     path = Util.FolderCreate(currentDay)
     while(True):
-        Util.pump_off()
+        Util.pump_off(1)
+        Util.pump_off(2)
         if currentDay != datetime.date.today():
             currentDay = datetime.date.today()
             path = Util.FolderCreate(currentDay)
