@@ -43,6 +43,9 @@ void loop() {
             digitalWrite(motorPin2, HIGH);
         }
         else if (serialListener == 'J') {
+            digitalWrite(motorPin1, LOW);
+            digitalWrite(motorPin2, LOW);
+            delay(1000)
             digitalWrite(motorPin1, HIGH);
             digitalWrite(motorPin2, HIGH);
         }
