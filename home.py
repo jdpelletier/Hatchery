@@ -113,5 +113,6 @@ def home(path):
 
     return render_template("home.html", datadic=datadic, script=script, div=div,
                             pump1on=pump1on, pump1off=pump1off, pump2on=pump2on,
-                            pump2off=pump2off, pumprunning=pumprunning, autoon=autoon,
+                            pump2off=pump2off, pump1running=pump1running,
+                            pump2running=pump2running, autoon=autoon,
                             autooff=autooff, autorunning=autorunning)
