@@ -120,11 +120,24 @@ def pump_check(valve):
 def pump_file_write(valve, onoff):
     if valve == 1:
         pfile = 'pumpcheck1.txt'
-    else:
+        with open(pfile, 'w+') as f:
+            f.write(onoff)
+            f.close()
+    elif valve == 2:
         pfile = 'pumpcheck2.txt'
-    with open(pfile, 'w+') as f:
-        f.write(onoff)
-        f.close()
+        with open(pfile, 'w+') as f:
+            f.write(onoff)
+            f.close()
+    elif valve == 3:
+        pfile1 = 'pumpcheck1.txt'
+        pfile2 = 'pumpcheck2.txt'
+        with open(pfile1, 'w+') as f:
+            f.write(onoff)
+            f.close()
+        with open(pfile2, 'w+') as f:
+            f.write(onoff)
+            f.close()
+
 
 def auto_check():
     try:
