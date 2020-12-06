@@ -26,7 +26,7 @@ def hatchery_data_collector():
             pumprunning2 = Util.pump_on(2)
         if (t2 > 85.0 or t3 > 85.0) and (Util.auto_check()):
             while t2 > 80.0 or t3 > 80.0:
-                if t2 > 80.0 and t3 > 80.0
+                if t2 > 80.0 and t3 > 80.0:
                     Util.pump_on(1)
                     Util.pump_on(2)
                     time.sleep(288)
