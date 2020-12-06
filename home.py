@@ -81,6 +81,8 @@ def home(path):
     pump2running = pump_check(2)
     pump1on = request.form.get("pump1on")
     if pump1on:
+        pump1running = pump_check(1)
+        pump2running = pump_check(2)
         if pump1running == False and pump2running == True:
             pump1running = pump_on(3)
         elif pump1running == False and pump2running == False:
@@ -88,6 +90,8 @@ def home(path):
 
     pump2on = request.form.get("pump2on")
     if pump2on:
+        pump1running = pump_check(1)
+        pump2running = pump_check(2)
         if pump1running == True and pump2running == False:
             pump2running = pump_on(3)
         elif pump1running == False and pump2running == False:
@@ -95,6 +99,8 @@ def home(path):
 
     pump1off = request.form.get("pump1off")
     if pump1off:
+        pump1running = pump_check(1)
+        pump2running = pump_check(2)
         if pump1running == True and pump2running == False:
             pump1running = pump_off(1)
         elif pump1running == True and pump2running == True:
@@ -103,6 +109,8 @@ def home(path):
 
     pump2off = request.form.get("pump2off")
     if pump2off:
+        pump1running = pump_check(1)
+        pump2running = pump_check(2)
         if pump1running == False and pump2running == True:
             pump2running = pump_off(2)
         elif pump1running == True and pump2running == True:
