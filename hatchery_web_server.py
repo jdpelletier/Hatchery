@@ -61,13 +61,13 @@ def home_():
 def history_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData/"
     today = datetime.date.today()
-    day = request.form.get("day", today.day)
+    day = request.form.get("day", str(today.day))
     if len(day) == 1:
         day = "0" + day
-    month = request.form.get("month", today.month)
+    month = request.form.get("month", str(today.month))
     if len(month) == 1:
         month = "0" + month
-    year = request.form.get("year", today.year)
+    year = request.form.get("year", str(today.year))
     daystring = f"{year}-{month}-{day}"
     path = parent_directory + daystring
     filepath = os.path.join(str(path), "dataFile.txt")
