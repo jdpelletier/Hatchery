@@ -18,6 +18,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 from home import home
+from history import history
 from forms import LoginForm
 
 class User(UserMixin, db.Model):
@@ -45,18 +46,36 @@ def make_shell_context():
     return {'db': db, 'User': User}
 
 @app.route('/',methods=['POST', 'GET'])
-@login_required
+##For testing
+# @login_required
 def home_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData"
-    ## for testing button, erase later
     today = datetime.date.today()
-    # yesterday = today - datetime.timedelta(days=9)
-    ##
-    # currentDay = datetime.date.today()
     todaystr = today.isoformat()
     path = os.path.join(parent_directory, todaystr)
     filepath = os.path.join(str(path), "dataFile.txt")
     return home(filepath)
+
+@app.route('/history',methods=['POST', 'GET'])
+@login_required
+def history_():
+    parent_directory = "/home/pi/Desktop/Hatchery/TestData/"
+    today = datetime.date.today()
+    day = request.form.get("day", today.day)
+    day = request.form.get("day", "25")
+    if len(day) == 1:
+        day = "0" + day
+    month = request.form.get("month", "6")
+    if len(month) == 1:
+        month = "0" + month
+    year = request.form.get("year", "2020")
+    daystring = f"{year}-{month}-{day}"
+    path = parent_directory + daystring
+    filepath = os.path.join(str(path), "dataFile.txt")
+    submit = request.form.get("submit")
+    if submit:
+        return history(filepath, daystring, submit)
+    return history(filepath, daystring, submit)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+       <link
+                  href="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.css"
+                  rel="stylesheet" type="text/css">
+              <link
+                  href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.css"
+                  rel="stylesheet" type="text/css">
+
+                <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.js"></script>
+                <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.js"></script>
+ 		<title>Hatchery</title>
+ 	</head>
+  <body>
+
+  <form action="" method="post">
+    	<h1>Historical Hatchery Measurements</h1>
+      <h2>Date selected: {{data_date}}</h2>
+      <p>
+        <select name="day" method="GET" action="/">
+        {% for day in days %}
+            <option value="{{day}}" SELECTED>{{day}}</option>"
+        {% endfor %}
+      </select>
+      <select name="day" method="GET" action="/">
+      {% for month in months %}
+          <option value="{{month}}" SELECTED>{{month}}</option>"
+      {% endfor %}
+      </select>
+      <select name="year" method="GET" action="/">
+      {% for year in years %}
+          <option value="{{year}}" SELECTED>{{year}}</option>"
+      {% endfor %}
+      </select>
+      </p>
+      <p>
+        <input type="submit" value="Submit">
+      </p>
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      {% endwith %}
+		<h3>Plots for today:</h3>
+		 {{ script|safe }}
+                 {{ div|safe }}
+
+	<a href="{{ url_for('logout') }}">Logout</a>
+	</body>
+</html>
