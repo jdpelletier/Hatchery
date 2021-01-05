@@ -1,6 +1,8 @@
 import os
 import datetime
 
+from Util import auto_file_write
+
 from werkzeug.urls import url_parse
 from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -73,6 +75,7 @@ def history_():
     filepath = os.path.join(str(path), "dataFile.txt")
     submit = request.form.get("submit")
     if submit:
+        auto_file_write(filepath)
         return history(filepath, daystring, submit)
     return history(filepath, daystring, submit)
 
