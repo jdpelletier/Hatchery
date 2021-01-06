@@ -47,7 +47,7 @@ def make_shell_context():
 
 @app.route('/',methods=['POST', 'GET'])
 ##For testing
-# @login_required
+@login_required
 def home_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData"
     today = datetime.date.today()

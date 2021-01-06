@@ -63,7 +63,6 @@ def history(path, daystring, submit):
                      line_color="green")
 
         p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot, None]])
-        # p = gridplot([[t1_plot, t2_plot], [ph_plot, None]])
 
         script, div = components(p)
 
