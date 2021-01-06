@@ -9,8 +9,6 @@ from bokeh.embed import components
 
 
 def history(path, daystring, submit):
-    with open("testfile.txt", 'W+') as f:
-        f.write(daystring)
     time_arr = []
     temp1 = []
     temp2 = []
