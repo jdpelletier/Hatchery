@@ -76,3 +76,6 @@ def history(path, daystring, submit):
     except FileNotFoundError:
         flash('No data on that day')
         return redirect(url_for('history_'))
+
+    except IndexError:
+        flash('Bad data on that day')
