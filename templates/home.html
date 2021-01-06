@@ -13,6 +13,7 @@
 		<title>Hatchery</title>
 	</head>
 	<body>
+		<a href="{{ url_for('history_') }}">Historical Plots</a>
 		<form action="." method="post">
 		<h1>Hatchery Measurements</h1>
                 <h2>{{ datadic.day }}</h2>
@@ -51,6 +52,6 @@
 		 {{ script|safe }}
                  {{ div|safe }}
 
-	<a href="{{ url_for('logout') }}">Logout</a> <a href="{{ url_for('history_') }}">Historical Plots</a>
+	<a href="{{ url_for('logout') }}">Logout</a>
 	</body>
 </html>
