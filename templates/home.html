@@ -10,12 +10,40 @@
 		<h1>Hatchery Measurements</h1>
                 <h2>{{ datadic.day }}</h2>
                 <h3>Measurements at {{ datadic.time }}</h3>
-                <ul>
+								<div class="col-md-6">
+					          <table class="table table-striped">
+					            <thead>
+					              <tr>
+					                <th>#</th>
+					                <th>Temperature</th>
+					                <th>pH</th>
+					              </tr>
+					            </thead>
+					            <tbody>
+					              <tr>
+					                <td>Tank 1</td>
+					                <td>{ datadic.temp1 }}</td>
+					                <td>N/A</td>
+					              </tr>
+					              <tr>
+					                <td>Tank 2</td>
+					                <td>{{ datadic.temp2 }}</td>
+					                <td>{{ datadic.ph }}</td>
+					              </tr>
+					              <tr>
+					                <td>Tank 3</td>
+					                <td>{{ datadic.temp3 }}</td>
+					                <td>N/A</td>
+					              </tr>
+					            </tbody>
+					          </table>
+					        </div>
+                <!-- <ul>
 			<li style="font-size:40px;">Tank 1 Temp: {{ datadic.temp1 }}</li>
 			<li style="font-size:40px;">Tank 2 Temp: {{ datadic.temp2 }}</li>
 			<li style="font-size:40px;">Tank 3 Temp: {{ datadic.temp3 }}</li>
 			<li style="font-size:40px;">Tank pH: {{ datadic.ph }}</li>
-		</ul>
+		</ul> -->
 		<p>
 			<input type="submit" name="pump1on" id="pump1on" value="Pump 1 On" style="height:50px; width:200px">
 			<input type="submit" name="pump1off" id="pump1off" value="Pump 1 Off" style="height:50px; width:200px">
