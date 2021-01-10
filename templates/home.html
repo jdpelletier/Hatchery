@@ -16,30 +16,33 @@
 			<li style="font-size:40px;">Tank 3 Temp: {{ datadic.temp3 }}</li>
 			<li style="font-size:40px;">Tank pH: {{ datadic.ph }}</li>
 		</ul>
-		<ul>
-			<li><input type="submit" name="pump1on" id="pump1on" value="Pump 1 On" style="height:50px; width:200px"></li>
-			<li><input type="submit" name="pump1off" id="pump1off" value="Pump 1 Off" style="height:50px; width:200px"></li>
+		<p>
+			<input type="submit" name="pump1on" id="pump1on" value="Pump 1 On" style="height:50px; width:200px">
+			<input type="submit" name="pump1off" id="pump1off" value="Pump 1 Off" style="height:50px; width:200px">
 			{% if pump1running %}
 			<h2 style="font-size:20px;">--Pump 1 is running--</h2>
 			{% else %}
 			<h2 style="font-size:20px;">--Pump 1 is off--</h2>
 			{% endif %}
-			<li><input type="submit" name="pump2on" id="pump2on" value="Pump 2 On" style="height:50px; width:200px"></li>
-			<li><input type="submit" name="pump2off" id="pump2off" value="Pump 2 Off" style="height:50px; width:200px"></li>
+		</p>
+		<p>
+			<input type="submit" name="pump2on" id="pump2on" value="Pump 2 On" style="height:50px; width:200px">
+			<input type="submit" name="pump2off" id="pump2off" value="Pump 2 Off" style="height:50px; width:200px">
 			{% if pump2running %}
 			<h2 style="font-size:20px;">--Pump 2 is running--</h2>
 			{% else %}
 			<h2 style="font-size:20px;">--Pump 2 is off--</h2>
 			{% endif %}
-			<li><input type="submit" name="autoon" id="autoon" value="Auto On" style="height:50px; width:200px"></li>
-			<li><input type="submit" name="autooff" id="autooff" value="Auto Off" style="height:50px; width:200px"></li>
+		</p>
+		<p>
+			<input type="submit" name="autoon" id="autoon" value="Auto On" style="height:50px; width:200px">
+			<input type="submit" name="autooff" id="autooff" value="Auto Off" style="height:50px; width:200px">
 			{% if autorunning %}
 			<h2>--Automated temperature adjustment is running--</h2>
 			{% else %}
 			<h2>--Automated temperature adjustment is off--</h2>
 			{% endif %}
-	  </ul>
-
+		</p>
 		<h3>Plots for today:</h3>
 		 {{ script|safe }}
                  {{ div|safe }}
