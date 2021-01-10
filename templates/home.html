@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block page_content %}
+<style>
+ table td {
+   font-size: 40px;
+ }
+</style>
 		<form action="." method="post">
 		<h1>Hatchery Measurements</h1>
                 <h2>{{ datadic.day }}</h2>
@@ -15,24 +20,24 @@
 					          <table class="table table-striped">
 					            <thead>
 					              <tr>
-					                <th>#</th>
+					                <th>Tank</th>
 					                <th>Temperature</th>
 					                <th>pH</th>
 					              </tr>
 					            </thead>
 					            <tbody>
 					              <tr>
-					                <td>Tank 1</td>
-					                <td>{ datadic.temp1 }}</td>
+					                <td>1</td>
+					                <td>{{ datadic.temp1 }}</td>
 					                <td>N/A</td>
 					              </tr>
 					              <tr>
-					                <td>Tank 2</td>
+					                <td>2</td>
 					                <td>{{ datadic.temp2 }}</td>
 					                <td>{{ datadic.ph }}</td>
 					              </tr>
 					              <tr>
-					                <td>Tank 3</td>
+					                <td>3</td>
 					                <td>{{ datadic.temp3 }}</td>
 					                <td>N/A</td>
 					              </tr>
