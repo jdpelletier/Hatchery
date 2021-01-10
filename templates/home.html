@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-{% extends 'bootstrap/base.html' %}
-<html>
+{% extends "base.html" %}
 	<head>
 	        <link
                     href="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.css"
@@ -13,7 +11,8 @@
                 <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.js"></script>
 		<title>Hatchery</title>
 	</head>
-	<body>
+{% block page_name %}Home{% endblock %}
+{% block page_content %}
 		<a href="{{ url_for('history_') }}">Historical Plots</a>
 		<form action="." method="post">
 		<h1>Hatchery Measurements</h1>
@@ -54,5 +53,4 @@
                  {{ div|safe }}
 
 	<a href="{{ url_for('logout') }}">Logout</a>
-	</body>
-</html>
+{% endblock %}
