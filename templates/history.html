@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-{% extends 'bootstrap/base.html' %}
- <html>
-  <head>
-       <link
-                  href="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.css"
-                  rel="stylesheet" type="text/css">
-              <link
-                  href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.css"
-                  rel="stylesheet" type="text/css">
+{% extends "base.html" %}
 
-                <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.js"></script>
-                <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.js"></script>
- 		<title>Hatchery</title>
- 	</head>
-  <body>
-  <a href="{{ url_for('home_') }}">Home</a>
+{% block title %}History{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
   <form action="" method="post">
     	<h1>Historical Hatchery Measurements</h1>
       <h2>Date selected: {{data_date}}</h2>
@@ -50,7 +41,4 @@
 		<h3>Plots for today:</h3>
 		 {{ script|safe }}
                  {{ div|safe }}
-
-	<a href="{{ url_for('logout') }}">Logout</a>
-	</body>
-</html>
+{% endblock %}
