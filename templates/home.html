@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-	<head>
+{% block head %}
 	        <link
                     href="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.css"
                     rel="stylesheet" type="text/css">
@@ -10,8 +10,8 @@
                 <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.1.0.min.js"></script>
                 <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.1.0.min.js"></script>
 		<title>Hatchery</title>
-	</head>
-{% block page_name %}Home{% endblock %}
+{% endblock %}
+
 {% block page_content %}
 		<a href="{{ url_for('history_') }}">Historical Plots</a>
 		<form action="." method="post">
