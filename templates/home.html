@@ -38,9 +38,9 @@
 			<input type="submit" name="autoon" id="autoon" value="Auto On" style="height:50px; width:200px">
 			<input type="submit" name="autooff" id="autooff" value="Auto Off" style="height:50px; width:200px">
 			{% if autorunning %}
-			<h2>--Automated temperature adjustment is running--</h2>
+			<h2><span class="label label-success">Automated temperature adjustment is on</span></h2>
 			{% else %}
-			<h2>--Automated temperature adjustment is off--</h2>
+			<h2><span class="label label-warning">Automated temperature adjustment is off</span></h2>
 			{% endif %}
 		</p>
 		<h3>Plots for today:</h3>
