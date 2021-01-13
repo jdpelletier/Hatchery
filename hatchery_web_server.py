@@ -48,6 +48,7 @@ def load_user(id):
 def make_shell_context():
     return {'db': db, 'User': User}
 
+@app.route('/',methods=['POST', 'GET'])
 @login_required
 def home_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData"
@@ -57,7 +58,6 @@ def home_():
     filepath = os.path.join(str(path), "dataFile.txt")
     return home(filepath, False)
 
-@app.route('/',methods=['POST', 'GET'])
 @login_required
 @mobilized(home_)
 def home_():
@@ -68,6 +68,7 @@ def home_():
     filepath = os.path.join(str(path), "dataFile.txt")
     return home(filepath, True)
 
+@app.route('/history',methods=['POST', 'GET'])
 @login_required
 def history_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData/"
@@ -87,7 +88,6 @@ def history_():
         return history(filepath, daystring, submit, False)
     return history(filepath, daystring, submit, False)
 
-@app.route('/history',methods=['POST', 'GET'])
 @login_required
 @mobilized(history_)
 def history_():
