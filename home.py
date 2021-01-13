@@ -9,7 +9,7 @@ from bokeh.embed import components
 
 from Util import pump_on, pump_off, pump_check, auto_file_write, auto_check
 
-def home(path):
+def home(path, mobile):
     # prepare some data
     time_arr = []
     temp1 = []
@@ -71,8 +71,10 @@ def home(path):
     ph_plot.line(time_arr, ph_av, legend_label="Average pH today: %f" % ph_av,
                  line_color="green")
 
-    p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot, None]])
-    # p = gridplot([[t1_plot, t2_plot], [ph_plot, None]])
+    if mobile == True:
+        p = columns(t1_plot, t2_plot, t3_plot, ph_plot)
+    else:
+        p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot, None]])
 
     script, div = components(p)
 

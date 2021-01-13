@@ -8,7 +8,7 @@ from bokeh.layouts import gridplot
 from bokeh.embed import components
 
 
-def history(path, daystring, submit):
+def history(path, daystring, submit, mobile):
     time_arr = []
     temp1 = []
     temp2 = []
@@ -62,7 +62,10 @@ def history(path, daystring, submit):
         ph_plot.line(time_arr, ph_av, legend_label="Average pH today: %f" % ph_av,
                      line_color="green")
 
-        p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot, None]])
+        if mobile == True:
+            p = columns(t1_plot, t2_plot, t3_plot, ph_plot)
+        else:
+            p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot, None]])
 
         script, div = components(p)
 
