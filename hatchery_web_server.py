@@ -68,7 +68,6 @@ def home_():
     filepath = os.path.join(str(path), "dataFile.txt")
     return home(filepath, True)
 
-@app.route('/history',methods=['POST', 'GET'])
 @login_required
 def history_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData/"
