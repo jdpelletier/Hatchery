@@ -8,8 +8,7 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
-from flask.ext.mobility import Mobility
-from flask.ext.mobility.decorators import mobilized
+from flask_mobility.decorators import mobilized
 
 from config import Config
 
