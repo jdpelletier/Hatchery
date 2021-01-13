@@ -48,7 +48,6 @@ def load_user(id):
 def make_shell_context():
     return {'db': db, 'User': User}
 
-@app.route('/',methods=['POST', 'GET'])
 @login_required
 def home_():
     parent_directory = "/home/pi/Desktop/Hatchery/TestData"
