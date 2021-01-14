@@ -45,12 +45,7 @@
 					          </table>
 					        </div>
 								</div>
-                <!-- <ul>
-			<li style="font-size:40px;">Tank 1 Temp: {{ datadic.temp1 }}</li>
-			<li style="font-size:40px;">Tank 2 Temp: {{ datadic.temp2 }}</li>
-			<li style="font-size:40px;">Tank 3 Temp: {{ datadic.temp3 }}</li>
-			<li style="font-size:40px;">Tank pH: {{ datadic.ph }}</li>
-		</ul> -->
+
 		<p>
 			<input type="submit" name="pump1on" id="pump1on" value="Pump 1 On" style="height:50px; width:200px">
 			<input type="submit" name="pump1off" id="pump1off" value="Pump 1 Off" style="height:50px; width:200px">
@@ -78,7 +73,19 @@
 			<h2><span class="label label-warning">Automated temperature adjustment is off</span></h2>
 			{% endif %}
 		</p>
-		<h3>Plots for today:</h3>
-		 {{ script|safe }}
-                 {{ div|safe }}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card text-center">
+                    <div class="card-header">
+                        		<h3>Plots for today:</h3>
+                    </div>
+                    <div class="card-body">
+                      {{ script|safe }}
+                                  {{ div|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
 {% endblock %}

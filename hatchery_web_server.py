@@ -8,7 +8,6 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
-from flask_mobility.decorators import mobilized
 
 from config import Config
 
@@ -56,17 +55,7 @@ def home_():
     todaystr = today.isoformat()
     path = os.path.join(parent_directory, todaystr)
     filepath = os.path.join(str(path), "dataFile.txt")
-    return home(filepath, False)
-
-@login_required
-@mobilized(home_)
-def home_():
-    parent_directory = "/home/pi/Desktop/Hatchery/TestData"
-    today = datetime.date.today()
-    todaystr = today.isoformat()
-    path = os.path.join(parent_directory, todaystr)
-    filepath = os.path.join(str(path), "dataFile.txt")
-    return home(filepath, True)
+    return home(filepath)
 
 @app.route('/history',methods=['POST', 'GET'])
 @login_required
@@ -85,28 +74,8 @@ def history_():
     filepath = os.path.join(str(path), "dataFile.txt")
     submit = request.form.get("submit")
     if submit:
-        return history(filepath, daystring, submit, False)
-    return history(filepath, daystring, submit, False)
-
-@login_required
-@mobilized(history_)
-def history_():
-    parent_directory = "/home/pi/Desktop/Hatchery/TestData/"
-    today = datetime.date.today()
-    day = request.form.get("day", str(today.day))
-    if len(day) == 1:
-        day = "0" + day
-    month = request.form.get("month", str(today.month))
-    if len(month) == 1:
-        month = "0" + month
-    year = request.form.get("year", str(today.year))
-    daystring = f"{year}-{month}-{day}"
-    path = parent_directory + daystring
-    filepath = os.path.join(str(path), "dataFile.txt")
-    submit = request.form.get("submit")
-    if submit:
-        return history(filepath, daystring, submit, True)
-    return history(filepath, daystring, submit, True)
+        return history(filepath, daystring, submit)
+    return history(filepath, daystring, submit)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
