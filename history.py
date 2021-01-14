@@ -37,6 +37,7 @@ def history(path, daystring, submit):
 
         t1_plot = figure(title="Temp 1", x_axis_label='Time', y_axis_label='Temp F',
                    x_axis_type='datetime')
+        t1_plot.sizing_mode = 'scale_width'
         t1_plot.circle(time_arr, temp1, size=5)
         t1_plot.line(time_arr, t1_max, legend_label="Max temp today: %f" % t1_max,
                      line_color="red")
@@ -44,6 +45,7 @@ def history(path, daystring, submit):
                      line_color="blue")
         t2_plot = figure(title="Temp 2", x_axis_label='Time', y_axis_label='Temp F',
                    x_axis_type='datetime')
+        t2_plot.sizing_mode = 'scale_width'
         t2_plot.circle(time_arr, temp2, size=5)
         t2_plot.line(time_arr, t2_max, legend_label="Max temp today: %f" % t2_max,
                      line_color="red")
@@ -51,6 +53,7 @@ def history(path, daystring, submit):
                      line_color="blue")
         t3_plot = figure(title="Temp 3", x_axis_label='Time', y_axis_label='Temp F',
                    x_axis_type='datetime')
+        t3_plot.sizing_mode = 'scale_width'
         t3_plot.circle(time_arr, temp3, size=5)
         t3_plot.line(time_arr, t3_max, legend_label="Max temp today: %f" % t3_max,
                      line_color="red")
@@ -58,6 +61,7 @@ def history(path, daystring, submit):
                      line_color="blue")
         ph_plot = figure(title="Fish Tank pH", x_axis_label='Time', y_axis_label='pH',
                    x_axis_type='datetime')
+        ph_plot.sizing_mode = 'scale_width'
         ph_plot.circle(time_arr, ph, size=5)
         ph_plot.line(time_arr, ph_av, legend_label="Average pH today: %f" % ph_av,
                      line_color="green")
