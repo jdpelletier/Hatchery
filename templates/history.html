@@ -44,18 +44,56 @@
           <div class="row">
               <div class="col-xl-6">
                   <div class="card text-center">
+                      <div class="card-header">
+                      </div>
                       <div class="card-body">
                         {{t1plot[1]['plot']|safe}}
                           {{t1plot[0]|safe}}
-                        {{t2plot[1]['plot']|safe}}
-                          {{t2plot[0]|safe}}
-                        {{t3plot[1]['plot']|safe}}
-                          {{t3plot[0]|safe}}
-                        {{phplot[1]['plot']|safe}}
-                          {{phplot[0]|safe}}
                       </div>
                   </div>
               </div>
           </div>
         </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card text-center">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-body">
+                          {{t2plot[1]['plot']|safe}}
+                            {{t2plot[0]|safe}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-xl-6">
+                      <div class="card text-center">
+                          <div class="card-header">
+                          </div>
+                          <div class="card-body">
+                            {{t3plot[1]['plot']|safe}}
+                              {{t3plot[0]|safe}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card text-center">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-body">
+                              {{phplot[1]['plot']|safe}}
+                                {{phplot[0]|safe}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
 {% endblock %}
