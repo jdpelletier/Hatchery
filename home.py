@@ -52,6 +52,9 @@ def home(path):
                  line_color="red")
     t1_plot.line(time_arr, t1_min, legend_label="Min temp today: %f" % t1_min,
                  line_color="blue")
+    t1plots = {'plot' : t1_plot}
+    t1plot = components(t1plots)
+
     t2_plot = figure(title="Temp 2", x_axis_label='Time', y_axis_label='Temp F',
                x_axis_type='datetime')
     t2_plot.sizing_mode = 'scale_width'
@@ -60,6 +63,9 @@ def home(path):
                  line_color="red")
     t2_plot.line(time_arr, t2_min, legend_label="Min temp today: %f" % t2_min,
                  line_color="blue")
+    t2plots = {'plot' : t2_plot}
+    t2plot = components(t2plots)
+
     t3_plot = figure(title="Temp 3", x_axis_label='Time', y_axis_label='Temp F',
                x_axis_type='datetime')
     t3_plot.sizing_mode = 'scale_width'
@@ -68,17 +74,22 @@ def home(path):
                  line_color="red")
     t3_plot.line(time_arr, t3_min, legend_label="Min temp today: %f" % t3_min,
                  line_color="blue")
+    t3plots = {'plot' : t3_plot}
+    t3plot = components(t3plots)
+
     ph_plot = figure(title="Fish Tank pH", x_axis_label='Time', y_axis_label='pH',
                x_axis_type='datetime')
     ph_plot.sizing_mode = 'scale_width'
     ph_plot.circle(time_arr, ph, size=5)
     ph_plot.line(time_arr, ph_av, legend_label="Average pH today: %f" % ph_av,
                  line_color="green")
+    phplots = {'plot' : ph_plot}
+    phplot = components(phplots)
 
-    p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot]])
-    p.sizing_mode = 'scale_width'
-
-    script, div = components(p)
+    # p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot]])
+    # p.sizing_mode = 'scale_width'
+    #
+    # script, div = components(p)
 
     ##Button stuff##
     pump1running = pump_check(1)
@@ -133,7 +144,8 @@ def home(path):
             autorunning = auto_file_write('off')
 
 
-    return render_template("home.html", datadic=datadic, script=script, div=div,
+    return render_template("home.html", datadic=datadic, t1plot=t1plot,
+                            t2plot=t2plot, t3plot=t3plot, phplot=phplot,
                             pump1on=pump1on, pump1off=pump1off, pump2on=pump2on,
                             pump2off=pump2off, pump1running=pump1running,
                             pump2running=pump2running, autoon=autoon,

@@ -81,8 +81,14 @@
                         		<h3>Plots for today:</h3>
                     </div>
                     <div class="card-body">
-                      {{ script|safe }}
-                                  {{ div|safe }}
+                      {{t1plot[1]['plot']|safe}}
+                        {{t1plot[0]|safe}}
+                      {{t2plot[1]['plot']|safe}}
+                        {{t2plot[0]|safe}}
+                      {{t3plot[1]['plot']|safe}}
+                        {{t3plot[0]|safe}}
+                      {{phplot[1]['plot']|safe}}
+                        {{phplot[0]|safe}}
                     </div>
                 </div>
             </div>
