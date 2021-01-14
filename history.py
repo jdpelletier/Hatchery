@@ -36,33 +36,34 @@ def history(path, daystring, submit):
         ph_av = statistics.mean(ph)
 
         t1_plot = figure(title="Temp 1", x_axis_label='Time', y_axis_label='Temp F',
-                   x_axis_type='datetime', sizing_mode='scale_width')
+                   x_axis_type='datetime')
         t1_plot.circle(time_arr, temp1, size=5)
         t1_plot.line(time_arr, t1_max, legend_label="Max temp today: %f" % t1_max,
                      line_color="red")
         t1_plot.line(time_arr, t1_min, legend_label="Min temp today: %f" % t1_min,
                      line_color="blue")
         t2_plot = figure(title="Temp 2", x_axis_label='Time', y_axis_label='Temp F',
-                   x_axis_type='datetime', sizing_mode='scale_width')
+                   x_axis_type='datetime')
         t2_plot.circle(time_arr, temp2, size=5)
         t2_plot.line(time_arr, t2_max, legend_label="Max temp today: %f" % t2_max,
                      line_color="red")
         t2_plot.line(time_arr, t2_min, legend_label="Min temp today: %f" % t2_min,
                      line_color="blue")
         t3_plot = figure(title="Temp 3", x_axis_label='Time', y_axis_label='Temp F',
-                   x_axis_type='datetime', sizing_mode='scale_width')
+                   x_axis_type='datetime')
         t3_plot.circle(time_arr, temp3, size=5)
         t3_plot.line(time_arr, t3_max, legend_label="Max temp today: %f" % t3_max,
                      line_color="red")
         t3_plot.line(time_arr, t3_min, legend_label="Min temp today: %f" % t3_min,
                      line_color="blue")
         ph_plot = figure(title="Fish Tank pH", x_axis_label='Time', y_axis_label='pH',
-                   x_axis_type='datetime', sizing_mode='scale_width')
+                   x_axis_type='datetime')
         ph_plot.circle(time_arr, ph, size=5)
         ph_plot.line(time_arr, ph_av, legend_label="Average pH today: %f" % ph_av,
                      line_color="green")
 
         p = gridplot([[t1_plot, t2_plot], [t3_plot, ph_plot]])
+        p.sizing_mode = 'scale_width'
 
         script, div = components(p)
 
