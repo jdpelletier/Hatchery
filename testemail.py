@@ -5,7 +5,7 @@ import smtplib
 from email.message import EmailMessage
 
 # Open the plain text file whose name is in textfile for reading.
-with open("email.txt") as fp:
+with open("testfile.txt") as fp:
     # Create a text/plain message
     msg = EmailMessage()
     msg.set_content(fp.read())
