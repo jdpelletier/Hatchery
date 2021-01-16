@@ -1,5 +1,7 @@
 import time
 import datetime
+import smtplib
+from email.message import EmailMessage
 
 import Util
 
@@ -29,8 +31,15 @@ def hatchery_data_collector():
         elif pumprunning2 == True: #if pump was on before read, cycle it back on after
             pumprunning2 = Util.pump_off(2)
             pumprunning2 = Util.pump_on(2)
-        if (t2 == 185.0 or t3 == 185.0): #check for broken sensor
+        if (t2 == 185.0 or t3 == 185.0) and (Util.auto_check()): #check for broken sensor
             Util.auto_file_write('off')
+            msg = EmailMessage()
+            content = """Warning: A sensor is not reading correctly.
+            The automated temperature adjustment has been shutoff."""
+            msg.set_content(content)
+            msg['Subject'] = f'ATTENTION: Sensor Problem'
+            msg['From'] = "kohanakai@outlook.com"
+            msg['To'] = "jdp2766@gmail.com"
         if (t2 > 85.0 or t3 > 85.0) and (Util.auto_check()):
             while (t2 > 80.0 or t3 > 80.0) and (Util.auto_check()):
                 if t2 > 80.0 and t3 > 80.0:
