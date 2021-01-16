@@ -11,7 +11,7 @@ with open("testfile.txt") as fp:
     msg.set_content("test")
 
 me = "njordan@kohanakai.com"
-you = "jdp2766@gmail.com"
+you = ['john.pelletier@ymail.com', 'jdp2766@gmail.com']
 msg['Subject'] = 'The tester email'
 msg['From'] = me
 msg['To'] = you

@@ -37,9 +37,9 @@ def hatchery_data_collector():
             content = """Warning: A sensor is not reading correctly.
             The automated temperature adjustment has been shutoff."""
             msg.set_content(content)
-            msg['Subject'] = f'ATTENTION: Sensor Problem'
-            msg['From'] = "kohanakai@outlook.com"
-            msg['To'] = "jdp2766@gmail.com"
+            msg['Subject'] = 'ATTENTION: Sensor Problem'
+            msg['From'] = "njordan@kohanakai.com"
+            msg['To'] = ['john.pelletier@ymail.com', 'njordan@kohanakai.com']
             s = smtplib.SMTP('smtp-relay.gmail.com', 25)
             s.send_message(msg)
             s.quit()
