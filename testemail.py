@@ -8,7 +8,7 @@ from email.message import EmailMessage
 with open("testfile.txt") as fp:
     # Create a text/plain message
     msg = EmailMessage()
-    msg.set_content(fp.read())
+    msg.set_content("test")
 
 me = "njordan@kohanakai.com"
 you = "jdp2766@gmail.com"

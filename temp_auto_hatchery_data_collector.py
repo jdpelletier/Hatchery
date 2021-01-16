@@ -40,6 +40,9 @@ def hatchery_data_collector():
             msg['Subject'] = f'ATTENTION: Sensor Problem'
             msg['From'] = "kohanakai@outlook.com"
             msg['To'] = "jdp2766@gmail.com"
+            s = smtplib.SMTP('smtp-relay.gmail.com', 25)
+            s.send_message(msg)
+            s.quit()
         if (t2 > 85.0 or t3 > 85.0) and (Util.auto_check()):
             while (t2 > 80.0 or t3 > 80.0) and (Util.auto_check()):
                 if t2 > 80.0 and t3 > 80.0:
