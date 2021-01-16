@@ -39,7 +39,7 @@ def hatchery_data_collector():
             msg.set_content(content)
             msg['Subject'] = 'ATTENTION: Sensor Problem'
             msg['From'] = "njordan@kohanakai.com"
-            msg['To'] = ['john.pelletier@ymail.com', 'njordan@kohanakai.com']
+            msg['To'] = ['jdp2766@gmail.com', 'njordan@kohanakai.com']
             s = smtplib.SMTP('smtp-relay.gmail.com', 25)
             s.send_message(msg)
             s.quit()
