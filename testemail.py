@@ -12,7 +12,7 @@ with open("email.txt") as fp:
 
 me = "njordan@kohanakai.com"
 you = "jdp2766@gmail.com"
-msg['Subject'] = f'The tester email'
+msg['Subject'] = 'The tester email'
 msg['From'] = me
 msg['To'] = you
 
