@@ -154,3 +154,96 @@ def auto_file_write(onoff):
     with open('autocheck.txt', 'w+') as f:
         f.write(onoff)
         f.close()
+
+def auto_run(t2, t3):
+    sensors = sensor_check(t2, t3) #check for bad sensors
+    if sensors[0] == True and sensors[1] == True:
+        email_check('good')
+        while (t2 > 80.0 or t3 > 80.0) and auto_check() and sensors[0] == True and sensors[1] == True:
+            if t2 > 80.0 and t3 > 80.0:
+                pump_on(3)
+                time.sleep(288)
+                pump_off(3)
+            elif t2 > 80.0 and t3 < 80.0:
+                pump_on(1)
+                time.sleep(288)
+                pump_off(1)
+            elif t2 < 80.0 and t3 > 80.0:
+                pump_on(2)
+                time.sleep(288)
+                pump_off(2)
+            t1, t2, t3, p = serRead()
+            string = f"{t1} {t2} {t3} {p}"
+            FileWrite(path, string)
+            sensors = sensor_check(t2, t3)
+    elif sensors[0] == True and sensors[1] == False:
+        email_check('tank3')
+        if t2 > 85.0:
+            while t2 > 80.0 and auto_check() and sensors[0] == True and sensors[1] == False:
+                pump_on(3)
+                time.sleep(288)
+                pump_off(3)
+                t1, t2, t3, p = serRead()
+                string = f"{t1} {t2} {t3} {p}"
+                FileWrite(path, string)
+                sensors = sensor_check(t2, t3)
+    elif sensors[0] == False and sensors[1] == True:
+        email_check('tank2')
+        if t3 > 85.0:
+            while t3 > 80.0 and auto_check() and sensors[0] == False and sensors[1] == True:
+                pump_on(3)
+                time.sleep(288)
+                pump_off(3)
+                t1, t2, t3, p = serRead()
+                string = f"{t1} {t2} {t3} {p}"
+                FileWrite(path, string)
+                sensors = sensor_check(t2, t3)
+    else: #both sensors are broken, shutoff system
+        email_check('both')
+        auto_file_write('off')
+
+def sensor_check(t2, t3):
+    sensorlist = []
+    if t2 == 185.0:
+        sensorlist.append(False)
+    else:
+        sensorlist.append(True)
+    if t3 == 185.0:
+        sensorlist.append(False)
+    else:
+        sensorlist.append(True)
+    return sensorlist
+
+def alert_email(sensor):
+    msg = EmailMessage()
+    if sensor == 'both':
+        content = f"""Warning: Both temperature sensors are not reading correctly.
+        The automated temperature adjustment will be shut off."""
+    else:
+        content = f"""Warning: Temperature sensor on tank {sensor} is not reading correctly.
+        The automated temperature adjustment is now running both tanks off of the other sensor."""
+    msg.set_content(content)
+    msg['Subject'] = 'ATTENTION: Sensor Problem on tank {sensor}'
+    msg['From'] = "njordan@kohanakai.com"
+    msg['To'] = ['jdp2766@gmail.com', 'njordan@kohanakai.com']
+    s = smtplib.SMTP('smtp-relay.gmail.com', 25)
+    s.send_message(msg)
+    s.quit()
+    email_file_write(sensor)
+
+def email_check(arg):
+    try:
+        with open('emailcheck.txt', 'r') as f:
+            content = f.readline()
+    except FileNotFoundError:
+        content = ""
+    if arg == 'good' and content != arg:
+        email_file_write(arg)
+    elif arg != 'good' and content != arg:
+        alert_email(arg)
+
+
+def email_file_write(sensor):
+    with open('autocheck.txt', 'w+') as f:
+        f.write(sensor)
+        f.close()
