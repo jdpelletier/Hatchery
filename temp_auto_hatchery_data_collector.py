@@ -1,6 +1,5 @@
 import time
 import datetime
-import smtplib
 
 import Util
 
