@@ -225,7 +225,7 @@ def alert_email(sensor):
         content = f"""Warning: Temperature sensor on tank {sensor} is not reading correctly.
         The automated temperature adjustment is now running both tanks off of the other sensor."""
     msg.set_content(content)
-    msg['Subject'] = 'ATTENTION: Sensor Problem on tank {sensor}'
+    msg['Subject'] = f'ATTENTION: Sensor Problem on tank {sensor}'
     msg['From'] = "njordan@kohanakai.com"
     msg['To'] = ['jdp2766@gmail.com', 'njordan@kohanakai.com']
     s = smtplib.SMTP('smtp-relay.gmail.com', 25)
