@@ -3,6 +3,7 @@ import time
 import datetime
 import statistics
 import serial
+from email.message import EmailMessage
 
 def NowString():
     today = datetime.datetime.now()
