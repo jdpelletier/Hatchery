@@ -180,26 +180,22 @@ def auto_run(t2, t3):
             sensors = sensor_check(t2, t3)
     elif sensors[0] == True and sensors[1] == False:
         email_check('tank3')
-        if t2 > 85.0:
-            while t2 > 80.0 and auto_check() and sensors[0] == True and sensors[1] == False:
-                pump_on(3)
-                time.sleep(288)
-                pump_off(3)
-                t1, t2, t3, p = serRead()
-                string = f"{t1} {t2} {t3} {p}"
-                FileWrite(path, string)
-                sensors = sensor_check(t2, t3)
+        while (t2 > 80.0) and auto_check():
+            pump_on(3)
+            time.sleep(288)
+            pump_off(3)
+            t1, t2, t3, p = serRead()
+            string = f"{t1} {t2} {t3} {p}"
+            FileWrite(path, string)
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
-        if t3 > 85.0:
-            while t3 > 80.0 and auto_check() and sensors[0] == False and sensors[1] == True:
-                pump_on(3)
-                time.sleep(288)
-                pump_off(3)
-                t1, t2, t3, p = serRead()
-                string = f"{t1} {t2} {t3} {p}"
-                FileWrite(path, string)
-                sensors = sensor_check(t2, t3)
+        while (t3 > 80.0) and auto_check():
+            pump_on(3)
+            time.sleep(288)
+            pump_off(3)
+            t1, t2, t3, p = serRead()
+            string = f"{t1} {t2} {t3} {p}"
+            FileWrite(path, string)
     else: #both sensors are broken, shutoff system
         email_check('both')
         auto_file_write('off')
@@ -214,6 +210,7 @@ def sensor_check(t2, t3):
         sensorlist.append(False)
     else:
         sensorlist.append(True)
+    print(sensorlist)
     return sensorlist
 
 def alert_email(sensor):
