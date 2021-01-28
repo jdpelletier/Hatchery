@@ -210,7 +210,6 @@ def sensor_check(t2, t3):
         sensorlist.append(False)
     else:
         sensorlist.append(True)
-    print(sensorlist)
     return sensorlist
 
 def alert_email(sensor):
