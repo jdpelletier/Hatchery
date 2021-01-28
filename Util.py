@@ -161,7 +161,7 @@ def auto_run(t2, t3, path, string):
     sensors = sensor_check(t2, t3) #check for bad sensors
     if sensors[0] == True and sensors[1] == True:
         email_check('good')
-        while (t2 > 80.0 or t3 > 80.0) and auto_check() and sensors[0] == True and sensors[1] == True:
+        while (t2 > 85.0 or t3 > 85.0) and auto_check() and sensors[0] == True and sensors[1] == True:
             if t2 > 80.0 and t3 > 80.0:
                 pump_on(3)
                 time.sleep(288)
@@ -180,7 +180,7 @@ def auto_run(t2, t3, path, string):
             sensors = sensor_check(t2, t3)
     elif sensors[0] == True and sensors[1] == False:
         email_check('tank3')
-        while (t2 > 80.0) and auto_check():
+        while (t2 > 85.0) and auto_check():
             pump_on(3)
             time.sleep(288)
             pump_off(3)
@@ -189,7 +189,7 @@ def auto_run(t2, t3, path, string):
             FileWrite(path, string)
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
-        while (t3 > 80.0) and auto_check():
+        while (t3 > 85.0) and auto_check():
             pump_on(3)
             time.sleep(288)
             pump_off(3)
