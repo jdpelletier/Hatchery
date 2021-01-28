@@ -157,7 +157,7 @@ def auto_file_write(onoff):
         f.write(onoff)
         f.close()
 
-def auto_run(t2, t3):
+def auto_run(t2, t3, path, string):
     sensors = sensor_check(t2, t3) #check for bad sensors
     if sensors[0] == True and sensors[1] == True:
         email_check('good')

@@ -30,7 +30,7 @@ def hatchery_data_collector():
             pumprunning2 = Util.pump_off(2)
             pumprunning2 = Util.pump_on(2)
         if Util.auto_check():
-            Util.auto_run(t2, t3)
+            Util.auto_run(t2, t3, path, string)
         time.sleep(288)            # wait 5 minutes
     return
 
