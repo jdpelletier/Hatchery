@@ -185,6 +185,9 @@ def auto_run(t2, t3, path, string):
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
             sensors = sensor_check(t2, t3)
+            if (t2 < 65.0) or (t3 < 65.0):
+                alert_email("software")
+                auto_file_write('off')
     elif sensors[0] == True and sensors[1] == False:
         email_check('tank3')
         while (t2 > 85.0) and auto_check():
@@ -197,6 +200,9 @@ def auto_run(t2, t3, path, string):
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
+            if (t2 < 65.0) or (t3 < 65.0):
+                alert_email("software")
+                auto_file_write('off')
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
         while (t3 > 85.0) and auto_check():
@@ -209,6 +215,9 @@ def auto_run(t2, t3, path, string):
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
+            if (t2 < 65.0) or (t3 < 65.0):
+                alert_email("software")
+                auto_file_write('off')
     else: #both sensors are broken, shutoff system
         email_check('both')
         auto_file_write('off')
@@ -230,7 +239,10 @@ def sensor_check(t2, t3):
 def alert_email(sensor):
     msg = EmailMessage()
     if sensor == 'both':
-        content = f"""Warning: Both temperature sensors are not reading correctly.
+        content = """Warning: Both temperature sensors are not reading correctly.
+        The automated temperature adjustment will be shut off."""
+    elif sensor == 'sensor':
+        content = """Warning: Something up with the software.
         The automated temperature adjustment will be shut off."""
     else:
         content = f"""Warning: Temperature sensor on {sensor} is not reading correctly.
