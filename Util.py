@@ -161,20 +161,20 @@ def auto_run(t2, t3, path, string):
     sensors = sensor_check(t2, t3) #check for bad sensors
     if sensors[0] == True and sensors[1] == True:
         email_check('good')
-        while ((t2 > 85.0) or (t3 > 85.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True):
-            if (t2 > 80.0) and (t3 > 80.0):
+        while ((t2 > 75.0) or (t3 > 75.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True):
+            if (t2 > 75.0) and (t3 > 75.0):
                 print("Auto on both pumps")
                 print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(3)
                 time.sleep(288)
                 pump_off(3)
-            elif (t2 > 80.0) and (t3 < 80.0):
+            elif (t2 > 75.0) and (t3 < 75.0):
                 print("Auto on t2")
                 print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(1)
                 time.sleep(288)
                 pump_off(1)
-            elif (t2 < 80.0) and (t3 > 80.0):
+            elif (t2 < 75.0) and (t3 > 75.0):
                 print("Auto on t3")
                 print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(2)
@@ -190,7 +190,7 @@ def auto_run(t2, t3, path, string):
                 auto_file_write('off')
     elif sensors[0] == True and sensors[1] == False:
         email_check('tank3')
-        while (t2 > 85.0) and auto_check():
+        while (t2 > 75.0) and auto_check():
             print("Auto on both no t3")
             print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
             pump_on(3)
@@ -205,7 +205,7 @@ def auto_run(t2, t3, path, string):
                 auto_file_write('off')
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
-        while (t3 > 85.0) and auto_check():
+        while (t3 > 75.0) and auto_check():
             print("Auto on t3 no t2")
             print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
             pump_on(3)
