@@ -75,27 +75,66 @@
 		</p>
     	<h3>Plots for today:</h3>
       <div class="container-fluid">
-          <div class="row">
-              <div class="col-lg-6">
-                  <div class="card text-center">
-                      <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#setup1">Setup 1</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#setup2">Setup 2</a>
-                            </li>
-                        </ul>
-                      </div>
-                      <div class="tab-content card-body">
-                        <div id="setup1" class="tab-pane active">
-                        {{t1plot[1]['plot']|safe}} {{t1plot[0]|safe}} {{t2plot[1]['plot']|safe}} {{t2plot[0]|safe}}
-                        {{t3plot[1]['plot']|safe}} {{t3plot[0]|safe}} {{phplot[1]['plot']|safe}} {{phplot[0]|safe}}
-                      </div>
-                    <div id="setup2" class="tab-pane active">Testing</div>
-                  </div>
-              </div>
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#setup1">Setup 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#setup2">Setup 2</a>
+                </li>
+            </ul>
           </div>
-        </div>
+          <div class="tab-content card-body">
+              <div id="setup1" class="tab-pane active">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="card text-center">
+                      <div class="card-header">
+                      </div>
+                      <div class="card-body">
+                          {{t1plot[1]['plot']|safe}}
+                            {{t1plot[0]|safe}}
+                      </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                     <div class="card text-center">
+                       <div class="card-header">
+                       </div>
+                       <div class="card-body">
+                          {{t2plot[1]['plot']|safe}}
+                             {{t2plot[0]|safe}}
+                       </div>
+                     </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="card text-center">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-body">
+                          {{t3plot[1]['plot']|safe}}
+                            {{t3plot[0]|safe}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                     <div class="card text-center">
+                      <div class="card-header">
+                      </div>
+                      <div class="card-body">
+                        {{phplot[1]['plot']|safe}}
+                           {{phplot[0]|safe}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div id="setup2" class="tab-pane active">Testing</div>
+      </div>
+    </div>
 {% endblock %}
