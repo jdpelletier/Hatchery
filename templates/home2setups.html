@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<style>
+ table td {
+   font-size: 35px;
+ }
+</style>
+		<form action="." method="post">
+		<h1>Hatchery Measurements</h1>
+                <h2>{{ datadic.day }}</h2>
+                <h3>Measurements at {{ datadic.time }}</h3>
+								<div class="row">
+								<div class="col-md-6">
+					          <table class="table table-bordered">
+					            <thead>
+					              <tr>
+					                <th>Tank</th>
+					                <th>Temperature</th>
+					                <th>pH</th>
+					              </tr>
+					            </thead>
+					            <tbody>
+					              <tr>
+					                <td>1</td>
+					                <td>{{ datadic.temp1 }}</td>
+					                <td>N/A</td>
+					              </tr>
+					              <tr>
+					                <td>2</td>
+					                <td>{{ datadic.temp2 }}</td>
+					                <td>{{ datadic.ph }}</td>
+					              </tr>
+					              <tr>
+					                <td>3</td>
+					                <td>{{ datadic.temp3 }}</td>
+					                <td>N/A</td>
+					              </tr>
+					            </tbody>
+					          </table>
+					        </div>
+								</div>
+
+		<p>
+			<input type="submit" name="pump1on" id="pump1on" value="Pump 1 On" style="height:50px; width:200px">
+			<input type="submit" name="pump1off" id="pump1off" value="Pump 1 Off" style="height:50px; width:200px">
+			{% if pump1running %}
+			<h2><span class="label label-warning">Pump 1 is running</span></h2>
+			{% else %}
+			<h2><span class="label label-success">Pump 1 is off</span></h2>
+			{% endif %}
+		</p>
+		<p>
+			<input type="submit" name="pump2on" id="pump2on" value="Pump 2 On" style="height:50px; width:200px">
+			<input type="submit" name="pump2off" id="pump2off" value="Pump 2 Off" style="height:50px; width:200px">
+			{% if pump2running %}
+			<h2><span class="label label-warning">Pump 2 is running</span></h2>
+			{% else %}
+			<h2><span class="label label-success">Pump 2 is off</span></h2>
+			{% endif %}
+		</p>
+		<p>
+			<input type="submit" name="autoon" id="autoon" value="Auto On" style="height:50px; width:200px">
+			<input type="submit" name="autooff" id="autooff" value="Auto Off" style="height:50px; width:200px">
+			{% if autorunning %}
+			<h2><span class="label label-success">Automated temperature adjustment is on</span></h2>
+			{% else %}
+			<h2><span class="label label-warning">Automated temperature adjustment is off</span></h2>
+			{% endif %}
+		</p>
+    	<h3>Plots for today:</h3>
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-6">
+                  <div class="card text-center">
+                      <div class="card-header">
+                        <h5>Downtime Pie Chart</h5>
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#setup1">Setup 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#setup2">Setup 2</a>
+                            </li>
+                        </ul>
+                      </div>
+                      <div class="tab-content card-body">
+                        <div id="setup1" class="tab-pane active">
+                        {{t1plot[1]['plot']|safe}}
+                          {{t1plot[0]|safe}}
+                        {{t2plot[1]['plot']|safe}}
+                          {{t2plot[0]|safe}}
+                        {{t3plot[1]['plot']|safe}}
+                          {{t3plot[0]|safe}}
+                        {{phplot[1]['plot']|safe}}
+                          {{phplot[0]|safe}}
+                      </div>
+                    <div id="setup2" class="tab-pane active">Testing</div>
+                  </div>
+              </div>
+          </div>
+        </div>
+{% endblock %}
