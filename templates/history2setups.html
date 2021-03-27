@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}History{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+  <form action="" method="post">
+    	<h1>Historical Hatchery Measurements</h1>
+      <h2>Date selected: {{data_date}}</h2>
+      <p>
+        <select name="day" method="GET" action="/">
+        {% for day in days %}
+            <option value="{{day}}" SELECTED>{{day}}</option>"
+        {% endfor %}
+      </select>
+      <select name="month" method="GET" action="/">
+      {% for month in months %}
+          <option value="{{month}}" SELECTED>{{month}}</option>"
+      {% endfor %}
+      </select>
+      <select name="year" method="GET" action="/">
+      {% for year in years %}
+          <option value="{{year}}" SELECTED>{{year}}</option>"
+      {% endfor %}
+      </select>
+      </p>
+      <p>
+        <input type="submit" value="Submit">
+      </p>
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <div class="alert alert-warning" role="alert">
+                <strong>Warning!</strong> {{ message }}
+              </div>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      {% endwith %}
+      <div class="container-fluid">
+       <div class="row">
+        <div class="col-lg-8">
+         <div class="card text-center">
+           <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#setup1">Setup 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#setup2">Setup 2</a>
+                </li>
+            </ul>
+           </div>
+          <div class="tab-content card-body">
+            <div id="setup1" class="tab-pane active">
+
+              {{t1plot[1]['plot']|safe}} {{t1plot[0]|safe}} {{t2plot[1]['plot']|safe}} {{t2plot[0]|safe}}
+              {{t3plot[1]['plot']|safe}} {{t3plot[0]|safe}} {{phplot[1]['plot']|safe}} {{phplot[0]|safe}}
+            </div>
+            <div id="setup2" class="tab-pane">
+
+            {{t1plot_2[1]['plot']|safe}} {{t1plot_2[0]|safe}} {{t2plot_2[1]['plot']|safe}} {{t2plot_2[0]|safe}}
+            {{t3plot_2[1]['plot']|safe}} {{t3plot_2[0]|safe}}
+            </div>
+                  </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+{% endblock %}

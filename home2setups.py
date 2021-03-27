@@ -7,9 +7,9 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.embed import components
 
-from Util import pump_on, pump_off, pump_check, auto_file_write, auto_check
+from Util import pump_on, pump_off, pump_check, auto_file_write, auto_check, auto_file_write_2, auto_check_2, pump_check_2
 
-def home(path):
+def home(path1, path2):
     # prepare some data
     time_arr = []
     temp1 = []
@@ -143,10 +143,128 @@ def home(path):
         if autorunning == True:
             autorunning = auto_file_write('off')
 
+    #Setup 2 stuff
+    # prepare some data
+    time_arr_2 = []
+    temp1_2 = []
+    temp2_2 = []
+    temp3_2 = []
+    with open(path2, 'r') as f:
+        for line in f:
+            data_2 = line.split()
+            time = data_2[0].strip().strip('*\x00')
+            time = datetime.strptime(time, '%H:%M:%S')
+            today = date.today()
+            time = time.replace(year=today.year, month=today.month, day=today.day)
+            time_arr_2.append(time)
+            temp1_2.append(float(data_2[1]))
+            temp2_2.append(float(data_2[2]))
+            temp3_2.append(float(data_2[3]))
+    t1_max_2 = max(temp1_2)
+    t2_max_2 = max(temp2_2)
+    t3_max_2 = max(temp3_2)
+    t1_min_2 = min(temp1_2)
+    t2_min_2 = min(temp2_2)
+    t3_min_2 = min(temp3_2)
+    datadic_2 = {
+        "day" : today,
+        "time" : time.strftime("%H:%M:%S"),
+        "temp1" : float(data_2[1]),
+        "temp2" : float(data_2[2]),
+        "temp3" : float(data_2[3]),
+        }
+
+    t1_plot_2 = figure(title="Temp 1", x_axis_label='Time', y_axis_label='Temp F',
+               x_axis_type='datetime')
+    t1_plot_2.sizing_mode = 'scale_width'
+    t1_plot_2.circle(time_arr_2, temp1_2, size=5)
+    t1_plot_2.line(time_arr_2, t1_max_2, legend_label="Max temp today: %f" % t1_max_2,
+                 line_color="red")
+    t1_plot_2.line(time_arr_2, t1_min_2, legend_label="Min temp today: %f" % t1_min_2,
+                 line_color="blue")
+    t1plots_2 = {'plot' : t1_plot_2}
+    t1plot_2 = components(t1plots_2)
+
+    t2_plot_2 = figure(title="Temp 2", x_axis_label='Time', y_axis_label='Temp F',
+               x_axis_type='datetime')
+    t2_plot_2.sizing_mode = 'scale_width'
+    t2_plot_2.circle(time_arr_2, temp2_2, size=5)
+    t2_plot_2.line(time_arr_2, t2_max_2, legend_label="Max temp today: %f" % t2_max_2,
+                 line_color="red")
+    t2_plot_2.line(time_arr_2, t2_min_2, legend_label="Min temp today: %f" % t2_min_2,
+                 line_color="blue")
+    t2plots_2 = {'plot' : t2_plot_2}
+    t2plot_2 = components(t2plots_2)
+
+    t3_plot_2 = figure(title="Temp 3", x_axis_label='Time', y_axis_label='Temp F',
+               x_axis_type='datetime')
+    t3_plot_2.sizing_mode = 'scale_width'
+    t3_plot_2.circle(time_arr_2, temp3_2, size=5)
+    t3_plot_2.line(time_arr_2, t3_max_2, legend_label="Max temp today: %f" % t3_max_2,
+                 line_color="red")
+    t3_plot_2.line(time_arr_2, t3_min_2, legend_label="Min temp today: %f" % t3_min_2,
+                 line_color="blue")
+    t3plots_2 = {'plot' : t3_plot_2}
+    t3plot_2 = components(t3plots_2)
+
+    pump1running_2 = pump_check_2(1)
+    pump2running_2 = pump_check_2(2)
+    pump1on_2 = request.form.get("pump1on_2")
+    if pump1on_2:
+        pump1running_2 = pump_check_2(1)
+        pump2running_2 = pump_check_2(2)
+        if pump2running_2 == True:
+            pump_onoff_write('11')
+        else:
+            pump_onoff_write('10')
+
+    pump2on_2 = request.form.get("pump2on_2")
+    if pump2on_2:
+        pump1running_2 = pump_check_2(1)
+        pump2running_2 = pump_check_2(2)
+        if pump1running_2 == True:
+            pump_onoff_write('11')
+        else:
+            pump_onoff_write('01')
+
+    pump1off_2 = request.form.get("pump1off")
+    if pump1off_2:
+        pump1running_2 = pump_check_2(1)
+        pump2running_2 = pump_check_2(2)
+        if pump2running_2 == False:
+            pump_onoff_write('00')
+        else:
+            pump_onoff_write('01')
+
+    pump2off_2 = request.form.get("pump2off")
+    if pump2off_2:
+        pump1running_2 = pump_check_2(1)
+        pump2running_2 = pump_check_2(2)
+        if pump1running_2 == False:
+            pump_onoff_write('00')
+        else:
+            pump_onoff_write('10')
+
+    autorunning_2 = auto_check_2()
+    autoon_2 = request.form.get("autoon_2")
+    if autoon_2:
+        if autorunning_2 == False:
+            autorunning_2 = auto_file_write_2('on')
+
+    autooff_2 = request.form.get("autooff_2")
+    if autooff_2:
+        if autorunning_2 == True:
+            autorunning_2 = auto_file_write_2('off')
+
 
     return render_template("home2setups.html", datadic=datadic, t1plot=t1plot,
                             t2plot=t2plot, t3plot=t3plot, phplot=phplot,
                             pump1on=pump1on, pump1off=pump1off, pump2on=pump2on,
                             pump2off=pump2off, pump1running=pump1running,
-                            pump2running=pump2running, autoon=autoon,
-                            autooff=autooff, autorunning=autorunning)
+                            pump2running=pump2running, pump1on_2=pump1on_2,
+                            pump1off_2=pump1off_2, pump2on_2=pump2on_2,
+                            pump2off_2=pump2off_2, pump1running_2=pump1running_2,
+                            pump2running_2=pump2running_2, datadic_2=datadic_2, t1plot_2=t1plot_2,
+                            t2plot_2=t2plot_2, t3plot_2=t3plot_2, autoon=autoon,
+                            autooff=autooff, autorunning=autorunning, autoon_2=autoon_2,
+                            autooff_2=autooff_2, autorunning_2=autorunning_2)

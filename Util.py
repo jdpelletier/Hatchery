@@ -119,6 +119,21 @@ def pump_check(valve):
     except FileNotFoundError: #catch on boot up, assume pump off
         return False
 
+def pump_check_2(valve):
+    if valve == 1:
+        pfile = '/home/pi/Desktop/HatcheryFB/pumpcheck1.txt'
+    else:
+        pfile = '/home/pi/Desktop/HatcheryFB/pumpcheck2.txt'
+    try:
+        with open(pfile, 'r') as f:
+            onoff = f.readline()
+        if onoff == 'on':
+            return True
+        else:
+            return False
+    except FileNotFoundError: #catch on boot up, assume pump off
+        return False
+
 def pump_file_write(valve, onoff):
     if valve == 1:
         pfile = 'pumpcheck1.txt'
@@ -154,6 +169,22 @@ def auto_check():
 
 def auto_file_write(onoff):
     with open('autocheck.txt', 'w+') as f:
+        f.write(onoff)
+        f.close()
+
+def auto_check_2():
+    try:
+        with open('/home/pi/Desktop/HatcheryFB/autocheck.txt', 'r') as f:
+            onoff = f.readline()
+        if onoff == 'on':
+            return True
+        else:
+            return False
+    except FileNotFoundError: #catch on boot up, assume pump off
+        return False
+
+def auto_file_write_2(onoff):
+    with open('/home/pi/Desktop/HatcheryFB/autocheck.txt', 'w+') as f:
         f.write(onoff)
         f.close()
 

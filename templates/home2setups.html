@@ -91,10 +91,69 @@
                         {{t1plot[1]['plot']|safe}} {{t1plot[0]|safe}} {{t2plot[1]['plot']|safe}} {{t2plot[0]|safe}}
                         {{t3plot[1]['plot']|safe}} {{t3plot[0]|safe}} {{phplot[1]['plot']|safe}} {{phplot[0]|safe}}
         </div>
-        <div id="setup2" class="tab-pane active">Testing</div>
+        <div id="setup2" class="tab-pane">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Tank</th>
+                <th>Temperature</th>
+                <th>pH</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>{{ datadic_2.temp1 }}</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>{{ datadic_2.temp2 }}</td>
+                <td>{{ N/A }}</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>{{ datadic_2.temp3 }}</td>
+                <td>N/A</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            <input type="submit" name="pump1on_2" id="pump1on_2" value="Pump 1 On" style="height:50px; width:200px">
+            <input type="submit" name="pump1off_2" id="pump1off_2" value="Pump 1 Off" style="height:50px; width:200px">
+            {% if pump1running_2 %}
+            <h2><span class="label label-warning">Pump 1 is running</span></h2>
+            {% else %}
+            <h2><span class="label label-success">Pump 1 is off</span></h2>
+            {% endif %}
+          </p>
+          <p>
+            <input type="submit" name="pump2on_2" id="pump2on_2" value="Pump 2 On" style="height:50px; width:200px">
+            <input type="submit_2" name="pump2off_2" id="pump2off_2" value="Pump 2 Off" style="height:50px; width:200px">
+            {% if pump2running_2 %}
+            <h2><span class="label label-warning">Pump 2 is running</span></h2>
+            {% else %}
+            <h2><span class="label label-success">Pump 2 is off</span></h2>
+            {% endif %}
+          </p>
+          <p>
+            <input type="submit" name="autoon_2" id="autoon_2" value="Auto On" style="height:50px; width:200px">
+            <input type="submit" name="autooff_2" id="autooff_2" value="Auto Off" style="height:50px; width:200px">
+            {% if autorunning_2 %}
+            <h2><span class="label label-success">Automated temperature adjustment is on</span></h2>
+            {% else %}
+            <h2><span class="label label-warning">Automated temperature adjustment is off</span></h2>
+            {% endif %}
+          </p>
+          <h3>Plots for today:</h3>
+
+                      {{t1plot_2[1]['plot']|safe}} {{t1plot_2[0]|safe}} {{t2plot_2[1]['plot']|safe}} {{t2plot_2[0]|safe}}
+                      {{t3plot_2[1]['plot']|safe}} {{t3plot_2[0]|safe}}
+          </div>
+                </div>
                   </div>
               </div>
           </div>
         </div>
-      </div>
 {% endblock %}

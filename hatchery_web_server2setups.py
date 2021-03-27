@@ -20,7 +20,7 @@ login.login_view = 'login'
 bootstrap = Bootstrap(app)
 
 from home2setups import home
-from history import history
+from history2setups import history
 from forms import LoginForm
 
 class User(UserMixin, db.Model):
@@ -50,17 +50,21 @@ def make_shell_context():
 @app.route('/',methods=['POST', 'GET'])
 @login_required
 def home_():
-    parent_directory = "/home/pi/Desktop/Hatchery/TestData"
+    parent_directory1 = "/home/pi/Desktop/Hatchery/TestData/"
+    parent_directory2 = "/home/pi/Desktop/HatcheryFB/TestData/"
     today = datetime.date.today()
     todaystr = today.isoformat()
-    path = os.path.join(parent_directory, todaystr)
-    filepath = os.path.join(str(path), "dataFile.txt")
-    return home(filepath)
+    path1 = os.path.join(parent_directory1, todaystr)
+    path2 = os.path.join(parent_directory1, todaystr)
+    filepath1 = os.path.join(str(path1), "dataFile.txt")
+    filepath2 = os.path.join(str(path2), "dataFile.txt")
+    return home(filepath1, filepath2)
 
 @app.route('/history',methods=['POST', 'GET'])
 @login_required
 def history_():
-    parent_directory = "/home/pi/Desktop/Hatchery/TestData/"
+    parent_directory1 = "/home/pi/Desktop/Hatchery/TestData/"
+    parent_directory2 = "/home/pi/Desktop/HatcheryFB/TestData/"
     today = datetime.date.today()
     day = request.form.get("day", str(today.day))
     if len(day) == 1:
@@ -70,12 +74,14 @@ def history_():
         month = "0" + month
     year = request.form.get("year", str(today.year))
     daystring = f"{year}-{month}-{day}"
-    path = parent_directory + daystring
-    filepath = os.path.join(str(path), "dataFile.txt")
+    path1 = parent_directory1 + daystring
+    path2 = parent_directory2 + daystring
+    filepath1 = os.path.join(str(path1), "dataFile.txt")
+    filepath2 = os.path.join(str(path2), "dataFile.txt")
     submit = request.form.get("submit")
     if submit:
-        return history(filepath, daystring, submit)
-    return history(filepath, daystring, submit)
+        return history(filepath1, filepath2, daystring, submit)
+    return history(filepath1, filepath2, daystring, submit)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
