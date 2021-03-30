@@ -51,7 +51,7 @@ def make_shell_context():
 @login_required
 def home_():
     parent_directory1 = "/home/pi/Desktop/Hatchery/TestData/"
-    parent_directory2 = "/home/pi/Desktop/HatcheryFB/TestData/"
+    parent_directory2 = "/home/pi/Desktop/HatcheryTestingFB/TestData/"
     today = datetime.date.today()
     todaystr = today.isoformat()
     path1 = os.path.join(parent_directory1, todaystr)
