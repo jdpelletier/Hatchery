@@ -16,7 +16,7 @@ def home(path1, path2):
     temp2 = []
     temp3 = []
     ph = []
-    with open(path, 'r') as f:
+    with open(path1, 'r') as f:
         for line in f:
             data = line.split()
             time = data[0].strip().strip('*\x00')
