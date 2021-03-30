@@ -305,6 +305,6 @@ def email_file_write(sensor):
         f.close()
 
 def pump_onoff_write(onoff):
-    with open('onoff.txt', 'w+') as f:
+    with open('/home/pi/Desktop/HatcheryTestingFB/onoff.txt', 'w+') as f:
         f.write(onoff)
         f.close()
