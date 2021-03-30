@@ -174,7 +174,7 @@ def auto_file_write(onoff):
 
 def auto_check_2():
     try:
-        with open('/home/pi/Desktop/HatcheryFB/autocheck.txt', 'r') as f:
+        with open('/home/pi/Desktop/HatcheryTestingFB/autocheck.txt', 'r') as f:
             onoff = f.readline()
         if onoff == 'on':
             return True
@@ -184,7 +184,7 @@ def auto_check_2():
         return False
 
 def auto_file_write_2(onoff):
-    with open('/home/pi/Desktop/HatcheryFB/autocheck.txt', 'w+') as f:
+    with open('/home/pi/Desktop/HatcheryTestingFB/autocheck.txt', 'w+') as f:
         f.write(onoff)
         f.close()
 
