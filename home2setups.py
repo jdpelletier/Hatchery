@@ -7,7 +7,7 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import gridplot
 from bokeh.embed import components
 
-from Util import pump_on, pump_off, pump_check, auto_file_write, auto_check, auto_file_write_2, auto_check_2, pump_check_2
+from Util import pump_on, pump_off, pump_onoff_write, pump_check, auto_file_write, auto_check, auto_file_write_2, auto_check_2, pump_check_2
 
 def home(path1, path2):
     # prepare some data

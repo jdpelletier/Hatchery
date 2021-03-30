@@ -121,9 +121,9 @@ def pump_check(valve):
 
 def pump_check_2(valve):
     if valve == 1:
-        pfile = '/home/pi/Desktop/HatcheryFB/pumpcheck1.txt'
+        pfile = '/home/pi/Desktop/HatcheryTestingFB/pumpcheck1.txt'
     else:
-        pfile = '/home/pi/Desktop/HatcheryFB/pumpcheck2.txt'
+        pfile = '/home/pi/Desktop/HatcheryTestingFB/pumpcheck2.txt'
     try:
         with open(pfile, 'r') as f:
             onoff = f.readline()
@@ -302,4 +302,9 @@ def email_check(arg):
 def email_file_write(sensor):
     with open('emailcheck.txt', 'w+') as f:
         f.write(sensor)
+        f.close()
+
+def pump_onoff_write(onoff):
+    with open('onoff.txt', 'w+') as f:
+        f.write(onoff)
         f.close()
