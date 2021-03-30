@@ -55,7 +55,7 @@ def home_():
     today = datetime.date.today()
     todaystr = today.isoformat()
     path1 = os.path.join(parent_directory1, todaystr)
-    path2 = os.path.join(parent_directory1, todaystr)
+    path2 = os.path.join(parent_directory2, todaystr)
     filepath1 = os.path.join(str(path1), "dataFile.txt")
     filepath2 = os.path.join(str(path2), "dataFile.txt")
     return home(filepath1, filepath2)
