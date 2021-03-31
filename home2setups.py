@@ -227,7 +227,7 @@ def home(path1, path2):
         else:
             pump_onoff_write('01')
 
-    pump1off_2 = request.form.get("pump1off")
+    pump1off_2 = request.form.get("pump1off_2")
     if pump1off_2:
         pump1running_2 = pump_check_2(1)
         pump2running_2 = pump_check_2(2)
@@ -236,7 +236,7 @@ def home(path1, path2):
         else:
             pump_onoff_write('01')
 
-    pump2off_2 = request.form.get("pump2off")
+    pump2off_2 = request.form.get("pump2off_2")
     if pump2off_2:
         pump1running_2 = pump_check_2(1)
         pump2running_2 = pump_check_2(2)
