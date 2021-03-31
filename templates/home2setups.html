@@ -13,8 +13,6 @@
 </style>
 		<form action="." method="post">
 		<h1>Hatchery Measurements</h1>
-                <h2>{{ datadic.day }}</h2>
-                <h3>Measurements at {{ datadic.time }}</h3>
                 <div class="container-fluid">
                  <div class="row">
                   <div class="col-lg-8">
@@ -31,6 +29,8 @@
                      </div>
                     <div class="tab-content card-body">
                       <div id="setup1" class="tab-pane active">
+                        <h2>{{ datadic.day }}</h2>
+                        <h3>Measurements at {{ datadic.time }}</h3>
 
 					          <table class="table table-bordered">
 					            <thead>
@@ -92,6 +92,8 @@
                         {{t3plot[1]['plot']|safe}} {{t3plot[0]|safe}} {{phplot[1]['plot']|safe}} {{phplot[0]|safe}}
         </div>
         <div id="setup2" class="tab-pane">
+          <h2>{{ datadic_2.day }}</h2>
+          <h3>Measurements at {{ datadic_2.time }}</h3>
           <table class="table table-bordered">
             <thead>
               <tr>
