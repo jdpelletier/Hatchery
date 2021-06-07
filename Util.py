@@ -193,7 +193,7 @@ def auto_run(t1, t2, path, string):
     if sensors[0] == True and sensors[1] == True:
         email_check('good')
         while ((t1 > 78.0) or (t2 > 78.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True):
-            if (t21 > 78.0) and (t2 > 78.0):
+            if (t1 > 78.0) and (t2 > 78.0):
                 print("Auto on both pumps")
                 print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(3)
