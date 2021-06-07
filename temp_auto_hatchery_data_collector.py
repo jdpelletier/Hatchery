@@ -29,7 +29,7 @@ def hatchery_data_collector():
         elif pumprunning2 == True: #if pump was on before read, cycle it back on after
             pumprunning2 = Util.pump_off(2)
             pumprunning2 = Util.pump_on(2)
-        if ((t2 > 84.0 and t2 != 185.0) or (t3 > 84.0 and t3 != 185.0)) and Util.auto_check():
+        if ((t1 > 84.0 and t1 != 185.0) or (t2 > 84.0 and t2 != 185.0)) and Util.auto_check():
             Util.auto_run(t2, t3, path, string)
         time.sleep(288)            # wait 5 minutes
     return

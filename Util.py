@@ -188,26 +188,26 @@ def auto_file_write_2(onoff):
         f.write(onoff)
         f.close()
 
-def auto_run(t2, t3, path, string):
-    sensors = sensor_check(t2, t3) #check for bad sensors
+def auto_run(t1, t2, path, string):
+    sensors = sensor_check(t1, t2) #check for bad sensors
     if sensors[0] == True and sensors[1] == True:
         email_check('good')
-        while ((t2 > 78.0) or (t3 > 78.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True):
-            if (t2 > 78.0) and (t3 > 78.0):
+        while ((t1 > 78.0) or (t2 > 78.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True):
+            if (t21 > 78.0) and (t2 > 78.0):
                 print("Auto on both pumps")
-                print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+                print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(3)
                 time.sleep(288)
                 pump_off(3)
-            elif (t2 > 78.0) and (t3 < 78.0):
-                print("Auto on t2")
-                print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+            elif (t1 > 78.0) and (t2 < 78.0):
+                print("Auto on t1")
+                print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(1)
                 time.sleep(288)
                 pump_off(1)
-            elif (t2 < 78.0) and (t3 > 78.0):
-                print("Auto on t3")
-                print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+            elif (t1 < 78.0) and (t2 > 78.0):
+                print("Auto on t2")
+                print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
                 pump_on(2)
                 time.sleep(288)
                 pump_off(2)
@@ -215,15 +215,15 @@ def auto_run(t2, t3, path, string):
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
-            sensors = sensor_check(t2, t3)
-            if (t2 < 65.0) or (t3 < 65.0):
+            sensors = sensor_check(t1, t2)
+            if (t1 < 65.0) or (t2 < 65.0):
                 alert_email("software")
                 auto_file_write('off')
     elif sensors[0] == True and sensors[1] == False:
         email_check('tank3')
-        while (t2 > 78.0) and auto_check():
-            print("Auto on both no t3")
-            print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+        while (t1 > 78.0) and auto_check():
+            print("Auto on both no t2")
+            print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
             pump_on(3)
             time.sleep(288)
             pump_off(3)
@@ -231,14 +231,14 @@ def auto_run(t2, t3, path, string):
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
-            if (t2 < 65.0) or (t3 < 65.0):
+            if (t1 < 65.0) or (t2 < 65.0):
                 alert_email("software")
                 auto_file_write('off')
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
-        while (t3 > 78.0) and auto_check():
-            print("Auto on t3 no t2")
-            print(f"t2={t2} t3={t3} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+        while (t2 > 78.0) and auto_check():
+            print("Auto on t2 no t1")
+            print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
             pump_on(3)
             time.sleep(288)
             pump_off(3)
@@ -246,22 +246,22 @@ def auto_run(t2, t3, path, string):
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
-            if (t2 < 65.0) or (t3 < 65.0):
+            if (t1 < 65.0) or (t2 < 65.0):
                 alert_email("software")
                 auto_file_write('off')
     else: #both sensors are broken, shutoff system
         email_check('both')
         auto_file_write('off')
         print("Lost both sensors, shutting off auto")
-    print(f"Exiting autoprogram with t2={t2} and t3={t3}")
+    print(f"Exiting autoprogram with t1={t1} and t2={t2}")
 
-def sensor_check(t2, t3):
+def sensor_check(t1, t2):
     sensorlist = []
-    if t2 == 185.0:
+    if t1 == 185.0:
         sensorlist.append(False)
     else:
         sensorlist.append(True)
-    if t3 == 185.0:
+    if t2 == 185.0:
         sensorlist.append(False)
     else:
         sensorlist.append(True)
