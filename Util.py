@@ -235,7 +235,7 @@ def auto_run(t1, t2, path, string):
                 alert_email("software")
                 auto_file_write('off')
     elif sensors[0] == False and sensors[1] == True:
-        email_check('tank2')
+        # email_check('tank2') TODO fix this
         while (t2 > 78.0) and auto_check():
             print("Auto on t2 no t1")
             print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
