@@ -235,7 +235,7 @@ def auto_run(t1, t2, path, string):
                 alert_email("software")
                 auto_file_write('off')
     elif sensors[0] == False and sensors[1] == True:
-        # email_check('tank2') TODO fix this
+        email_check('tank2')
         while (t2 > 78.0) and auto_check():
             print("Auto on t2 no t1")
             print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
@@ -246,7 +246,7 @@ def auto_run(t1, t2, path, string):
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
             FileWrite(path, string)
-            if (t1 < 65.0) or (t2 < 65.0):
+            if (t1 < 65.0 and t1 != -196.6) or (t2 < 65.0 and t2 != -196.6):
                 alert_email("software")
                 auto_file_write('off')
     else: #both sensors are broken, shutoff system
