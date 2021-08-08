@@ -54,11 +54,11 @@ def serRead():
             print("Read Error")
             continue
         if float(values[0]) > 10:
-            t1.append(float(values[0]))
-        if float(values[1]) > 10:
-            t2.append(float(values[1]))
-        if float(values[2]) > 10:
-            t3.append(float(values[2]))
+            t2.append(float(values[0])) #move back to t1
+        if float(values[1]) > 10: #move back to t2
+            t3.append(float(values[1]))
+        # if float(values[2]) > 10:  TODO fix when sensor is back
+        t1.append(float(values[2]))
         p.append(float(values[3]))
         time.sleep(1)
         i += 1
