@@ -257,11 +257,11 @@ def auto_run(t1, t2, path, string):
 
 def sensor_check(t1, t2):
     sensorlist = []
-    if t1 == 185.0:
+    if t1 == 185.0 or t1 == -196.6:
         sensorlist.append(False)
     else:
         sensorlist.append(True)
-    if t2 == 185.0:
+    if t2 == 185.0 or t2 == -196.6:
         sensorlist.append(False)
     else:
         sensorlist.append(True)
