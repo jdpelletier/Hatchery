@@ -54,11 +54,11 @@ def serRead():
             print("Read Error")
             continue
         if float(values[0]) > 10:
-            t2.append(float(values[0])) #move back to t1
-        if float(values[1]) > 10: #move back to t2
-            t3.append(float(values[1]))
-        # if float(values[2]) > 10:  TODO fix when sensor is back
-        t1.append(float(values[2]))
+            t1.append(float(values[0])) 
+        if float(values[1]) > 10:
+            t2.append(float(values[1]))
+        if float(values[2]) > 10:  TODO fix when sensor is back
+            t3.append(float(values[2]))
         p.append(float(values[3]))
         time.sleep(1)
         i += 1
@@ -237,7 +237,7 @@ def auto_run(t1, t2, path, string):
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
         while (t2 > 78.0) and auto_check():
-            print("Auto on t2 no t1")
+            print("Auto on both no t1")
             print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
             pump_on(3)
             time.sleep(288)
