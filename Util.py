@@ -192,33 +192,25 @@ def auto_run(t1, t2, path, string):
     sensors = sensor_check(t1, t2) #check for bad sensors
     if sensors[0] == True and sensors[1] == True:
         email_check('good')
-        # while ((t1 > 78.0) or (t2 > 78.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True): TODO add t1 back in
-        while t2 > 78.0 and auto_check() and (sensors[0]==True) and (sensors[1]==True):
-            # if (t1 > 78.0) and (t2 > 78.0): TODO add ALL this back in
-            #     print("Auto on both pumps")
-            #     print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
-            #     pump_on(3)
-            #     time.sleep(288)
-            #     pump_off(3)
-            # elif (t1 > 78.0) and (t2 < 78.0):
-            #     print("Auto on t1")
-            #     print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
-            #     pump_on(1)
-            #     time.sleep(288)
-            #     pump_off(1)
-            # elif (t1 < 78.0) and (t2 > 78.0):
-            #     print("Auto on t2")
-            #     print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
-            #     pump_on(2)
-            #     time.sleep(288)
-            #     pump_off(2)
-
-            print("Auto on t2") #TODO remove ALL this ->
-            print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")#
-            pump_on(2)#
-            time.sleep(288)#
-            pump_off(2)#
-
+        while ((t1 > 78.0) or (t2 > 78.0)) and auto_check() and (sensors[0]==True) and (sensors[1]==True):
+            if (t1 > 78.0) and (t2 > 78.0):
+                print("Auto on both pumps")
+                print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+                pump_on(3)
+                time.sleep(288)
+                pump_off(3)
+            elif (t1 > 78.0) and (t2 < 78.0):
+                print("Auto on t1")
+                print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+                pump_on(1)
+                time.sleep(288)
+                pump_off(1)
+            elif (t1 < 78.0) and (t2 > 78.0):
+                print("Auto on t2")
+                print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+                pump_on(2)
+                time.sleep(288)
+                pump_off(2)
             time.sleep(2)
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
@@ -227,38 +219,31 @@ def auto_run(t1, t2, path, string):
             if (t1 < 65.0) or (t2 < 65.0):
                 alert_email("software")
                 auto_file_write('off')
-                
-    # elif sensors[0] == True and sensors[1] == False: TODO add ALL this back in
-    #     email_check('tank3')
-    #     while (t1 > 78.0) and auto_check():
-    #         print("Auto on both no t2")
-    #         print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
-    #         pump_on(3)
-    #         time.sleep(288)
-    #         pump_off(3)
-    #         time.sleep(2)
-    #         t1, t2, t3, p = serRead()
-    #         string = f"{t1} {t2} {t3} {p}"
-    #         FileWrite(path, string)
-    #         if (t1 < 65.0) or (t2 < 65.0):
-    #             alert_email("software")
-    #             auto_file_write('off')
+
+    elif sensors[0] == True and sensors[1] == False:
+        email_check('tank3')
+        while (t1 > 78.0) and auto_check():
+            print("Auto on both no t2")
+            print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+            pump_on(3)
+            time.sleep(288)
+            pump_off(3)
+            time.sleep(2)
+            t1, t2, t3, p = serRead()
+            string = f"{t1} {t2} {t3} {p}"
+            FileWrite(path, string)
+            if (t1 < 65.0) or (t2 < 65.0):
+                alert_email("software")
+                auto_file_write('off')
 
     elif sensors[0] == False and sensors[1] == True:
         email_check('tank2')
         while (t2 > 78.0) and auto_check():
-            # print("Auto on both no t1") TODO add ALL this back in
-            # print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
-            # pump_on(3)
-            # time.sleep(288)
-            # pump_off(3)
-
-            print("Auto on t2 no t1") #TODO remove ALL of this -> #
-            print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")#
-            pump_on(2)#
-            time.sleep(288)#
-            pump_off(2)#
-
+            print("Auto on both no t1")
+            print(f"t1={t1} t2={t2} sensor 0 = {sensors[0]} sensor 1 = {sensors[1]}")
+            pump_on(3)
+            time.sleep(288)
+            pump_off(3)
             time.sleep(2)
             t1, t2, t3, p = serRead()
             string = f"{t1} {t2} {t3} {p}"
